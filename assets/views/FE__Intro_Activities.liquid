@@ -1,0 +1,62 @@
+{% assign imageDecor = "Web-17/decor-primary-full.svg" | generate_proxy_url: width: null, height: null %}
+
+<div class="w-full bg-white">
+  <div class="mx-auto relative w-full  xl:max-w-7xl">
+    <div class="absolute -bottom-[10%] -right-[35%] hidden w-[500px] h-[700px] 2xl:flex">
+      <img
+        src="{{ imageDecor }}"
+        class="w-full h-full"
+        alt="">
+    </div>
+    <div class="flex flex-col items-center gap-12 px-4 py-16 md:px-6 md:py-20 lg:gap-16 lg:pt-[120px] lg:pb-40 lg:flex-row lg:px-2 2xl:px-0">
+      <div class="w-full lg:w-1/2 xl:w-[46.25%] reveal fadeInLeft">
+        <div class="relative w-full pt-[144%] md:pt-[70%] lg:pt-[123%]">
+          <img
+            src="{{ ThemeSettings.introductionImageAction.fullUrl }}"
+            class="image-custom object-cover rounded-br-[40px] rounded-tl-[40px]"
+            alt="{{ ThemeSettings.introductionImageAction.name }}">
+        </div>
+      </div>
+      <div class="flex flex-col flex-auto lg:w-1/2 xl:w-auto xl:max-w-[624px] reveal fadeInRight">
+        <div class="flex flex-col text-heading-4 text-secondary-1 font-semibold md:text-heading-2">
+          <p>HƠN<span class="text-primary-1">
+              8 NĂM
+            </span>
+          </p>
+          <p>HOẠT ĐỘNG VÀ PHÁT TRIỂN</p>
+        </div>
+        <div class="flex flex-col text-neutral-1-800 text-body-1 pt-7 line-clamp-[23] md:line-clamp-[11] lg:line-clamp-[15]">
+          <p>
+            Công ty TNHH Hữu Cơ Thuận Thiên được thành lập vào tháng 06 năm 2014, là công ty chuyên cung cấp các sản phẩm hữu cơ phục vụ cho nền nông nghiệp sạch và bền vững.
+          </p>
+          <p>
+            Với đội ngũ nhân viên nhiệt huyết, giàu kinh nghiệm, công ty Thuận Thiên sẽ mang đến những sản phẩm có chất lượng tốt nhất, giá thành hợp lý cùng với kỹ thuật tốt nhất nhằm giúp nông dân giảm bớt được chi phí đầu tư và công sức lao động nhưng năng suất vẫn là yếu tố mà Thuận Thiên cùng nông dân hướng tới.
+          </p>
+          <p>
+            Thế mạnh làm nên thương hiệu Hữu Cơ Thuận Thiên khác biệt chính là: Sự chuyên môn trong nghiệp  vụ, tính trách nhiệm cao cùng những giám sát kỹ thuật làm việc nghiêm túc nhằm mang đến những giá trị tốt nhất đến với người nông dân. Ngoài ra, các bộ phận thường xuyên trao đổi công việc, chia sẻ những khó khăn, sáng kiến để dựng xây nên một Thuận Thiên năng động, sáng tạo, chuyên nghiệp hơn trong từng dự án mà Thuận Thiên tham gia.
+          </p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, ipsum suscipit consequuntur eveniet ipsam dolore non nostrum mollitia, amet distinctio, quaerat sunt est expedita doloremque explicabo tenetur ullam minus vero.
+          </p>
+        </div>
+        <div class="flex gap-11 pt-12 md:pt-20">
+          <div class="flex flex-col gap-[9px] md:w-1/2" id="counter-box">
+            <p class="flex gap-2 flex-wrap items-end text-heading-1 leading-[42px] text-secondary-3 font-bold">
+              <span class="counter">6.7</span>
+              <span class="text-xl font-semibold text-secondary-1">triệu</span>
+            </p>
+            <p class="text-body-2 text-neutral-1-900">
+              Khách hàng tiêu biểu trên toàn quốc
+            </p>
+          </div>
+          <div class="flex flex-col gap-[9px] md:w-1/2" id="counter-box">
+            <p class="flex gap-2 flex-wrap items-end text-heading-1 leading-[42px] text-secondary-3 font-bold">+<span class="counter">50</span>
+              <span class="text-xl font-semibold text-secondary-1">hệ thống</span>
+            </p>
+            <p class="text-body-2 text-neutral-1-900">Chi nhánh khắp cả nước từ nam ra bắc</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

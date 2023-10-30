@@ -1,0 +1,53 @@
+{% assign imageOrder1 = "Web-17/decor-primary-full.svg" | generate_proxy_url: width: null, height: null %}
+
+{% assign data = Model.Request %}
+{% assign productDetail = data.Id | get_product_by_id %}
+
+{% assign categoryProduct = productDetail.Category.Id | get_shop_category_by_id %}
+{% assign breadcrumbList = categoryProduct | category_to_breadcrumb: lastTitle: productDetail.Name %}
+
+{% zone "Header" %}
+  {{ 'Module__MenuWrapper' | shape_new | shape_properties: Shape: 'FE__Menu' | shape_render }}
+{% endzone %}
+
+{% zone "Footer" %}
+  {{ "Module__FooterWrapper" | shape_new | shape_properties: Shape: 'FE__Footer' | shape_render }}
+{% endzone %}
+
+<main>
+  <section>
+    <div class="bg-primary-4 mt-20 lg:overflow-hidden">
+      <div class="mx-auto w-full xl:max-w-7xl lg:animate-top">
+        {{ 'Module__Shop_BreadcrumbCustomWrapper' | shape_new | shape_properties: Shape: 'FE__Breadcrumb', Data: breadcrumbList | shape_render }}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="w-full overflow-x-clip xl:relative">
+      <div class="absolute -z-10 hidden -right-[10%] top-36 xl:flex">
+        <img
+          src="{{imageOrder1}}"
+          alt=""
+          class="object-contain w-[620px] h-[700px]">
+      </div>
+      <div class="mx-auto w-full xl:max-w-7xl">
+        {{ 'Module__Shop_ProductListWrapper' | shape_new | shape_properties: Shape: 'FE__Product_Detail', Data: productDetail | shape_render }}
+      </div>
+    </div>
+  </section>
+
+  {% if productDetail.Description != null %}
+    <section>
+      {{ 'FE__Product_Description' | shape_new | shape_properties: Data: productDetail | shape_render }}
+    </section>
+  {% endif %}
+
+  <section>
+    {{ 'FE__Product_Related' | shape_new | shape_properties: Data: productDetail | shape_render }}
+  </section>
+
+  <div id="react-notification"></div>
+  <div id="react-modal-product"></div>
+
+</main>

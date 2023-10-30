@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://static.tds-ui.public.dev.tmtco.org/assets/fonts/SVN-Avenir Next/style.css">
+        <link rel="shortcut icon" href="../img/header-footer/favicon.png" type="image/x-icon"/>
+        <title>Thuận Thiên - Tìm kiếm sản phẩm</title>
+    </head>
+    <body class="font-SVN w-screen overflow-x-hidden">
+        <header>
+            <section>
+                <div class="bg-primary-1 fixed top-0 z-40 w-full">
+                    <div class="w-full mx-auto xl:max-w-7xl">
+                        <div class="flex justify-between items-center h-20 p-4 md:px-6 lg:px-2 2xl:px-0">
+                            <div><a class="" href="index.html"><img class="w-[200px] h-12 object-contain" src="../img/header-footer/logo.png"></a></div>
+                            <div class="list-items hidden text-body-1 text-white/60 fixed flex-col w-full h-screen z-20 bg-primary-1 top-20 left-0 xl:relative xl:gap-14 xl:h-fit xl:flex-row xl:top-0 xl:w-fit xl:flex">
+                                <div class="flex text-left py-4 border-b border-neutral-3-400 border-solid xl:text-center xl:py-0 xl:border-none xl:justify-center xl:items-center"><a class="px-6 text-white xl:py-7 xl:px-0" href="index.html">Trang chủ</a></div>
+                                <div class="flex text-left py-4 border-b border-neutral-3-400 border-solid xl:text-center xl:py-0 xl:border-none xl:justify-center xl:items-center"><a class="px-6 xl:hover:text-white xl:py-7 xl:px-0" href="introduction.html">Giới thiệu</a></div>
+                                <div class="flex text-left py-4 border-b border-neutral-3-400 border-solid xl:text-center xl:py-0 xl:border-none xl:justify-center xl:items-center"><a class="px-6 xl:hover:text-white xl:py-7 xl:px-0" href="product.html">Sản phẩm</a></div>
+                                <div class="flex text-left py-4 border-b border-neutral-3-400 border-solid xl:text-center xl:py-0 xl:border-none xl:justify-center xl:items-center"><a class="px-6 xl:hover:text-white xl:py-7 xl:px-0" href="blog.html">Bài viết</a></div>
+                                <div class="flex text-left py-4 border-b border-neutral-3-400 border-solid xl:text-center xl:py-0 xl:border-none xl:justify-center xl:items-center"><a class="px-6 xl:hover:text-white xl:py-7 xl:px-0" href="contact.html">Liên hệ</a></div>
+                            </div> 
+                            <button class="nav-toggler xl:hidden"><span></span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+       </header>
+
+        <main>
+            <!-- Sản phẩm -->
+           <section class="bg-primary-4 mt-20 lg:animate-fade">
+                <div class="mx-auto w-full xl:max-w-7xl">
+                    <div class="flex flex-wrap gap-4 py-5 text-body-1 px-4 md:px-6 lg:px-2 2xl:px-0">
+                        <div class="border-r-2 border-primary-1 text-neutral-1-900 pr-4"><a href="">Trang chủ</a></div>
+                        <div class="text-secondary-1 font-medium"><a href="product.html">Sản phẩm</a></div>
+                    </div>
+                </div>
+           </section>
+
+           <!-- Có kết quả -->
+           <section>
+               <div class="mx-auto w-full relative xl:max-w-7xl">
+                    <div class="absolute hidden -z-10 -left-[38%] top-1/4 xl:flex">
+                        <img alt="" src="../img/decor-primary-full.svg" class="object-contain w-[600px] h-[626px]">
+                    </div>
+                    <div class="flex flex-col gap-8 px-6 py-12 md:py-20 lg:px-2 2xl:px-0 lg:py-[120px]">
+                        <div class="flex flex-col pb-8 border-b border-neutral-2-200 gap-y-4 gap-x-10 justify-between animate-bottom lg:flex-row" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+                            <p class="text-header-1 font-semibold text-secondary-1 md:text-heading-3 lg:text-heading-2">
+                                Tìm kiếm “Gạo Long Châu”
+                            </p>
+                            <form action="post" class="flex h-fit w-full lg:w-1/3">
+                                <input type="text" 
+                                placeholder="Tìm kiếm sản phẩm"
+                                class="w-full px-6 py-4 border border-primary-1 focus:outline-0 text-body-2 placeholder:text-neutral-1-300 text-neutral-1-700 rounded-l-lg">
+                                <button class="flex text-white bg-primary-1 p-3.5 rounded-r-lg">
+                                    <i class="twi-17-search-line-line text-2xl leading-none"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="w-full flex flex-col gap-10">
+                            <div class="flex flex-col gap-6 animate-top" style="animation-delay: 400ms; animation-fill-mode: backwards;">
+                                <p class="text-secondary-1 text-title-1 font-semibold w-fit">Tìm thấy 10 kết quả</p>
+                                <div class="grid grid-cols-1 w-full gap-4 items-center lg:grid-cols-2 lg:gap-8 xl:grid-cols-4">
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-body-2 text-neutral-1-900">
+                                            Danh mục
+                                        </p>
+                                        <div class="w-full flex relative dropdown scrollbar">
+                                            <button class="dropdown-btn flex w-full justify-between items-center gap-2 pl-3 border border-neutral-2-200 rounded md:w-full">
+                                                <p class="text-body-2 text-neutral-1-900 ">Tất cả</p>
+                                                <span class="twi-17-arrow-down-line text-2xl leading-6 text-neutral-1-500 p-3"></span>
+                                            </button>
+                                            <div class="dropdown-panel absolute top-7 md:top-[50px] right-0 py-2 z-20 w-full hidden max-h-[338px] overflow-y-hidden">
+                                                <ul class="flex flex-col w-full bg-white overflow-y-scroll rounded border border-neutral-2-200 shadow-dropdown">
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 text-primary-1 justify-between icon-selected">Tất cả</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Cũ nhất</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Giá từ thấp đến cao</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Giá từ cao đến thấp</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Giá từ cao đến thấp</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-body-2 text-neutral-1-900">
+                                            Thương hiệu
+                                        </p>
+                                        <div class="w-full flex relative dropdown scrollbar">
+                                            <button class="dropdown-btn flex w-full justify-between items-center gap-2 pl-3 border border-neutral-2-200 rounded md:w-full">
+                                                <p class="text-body-2 text-neutral-1-900 ">Mới nhất</p>
+                                                <span class="twi-17-arrow-down-line text-2xl leading-6 text-neutral-1-500 p-3"></span>
+                                            </button>
+                                            <div class="dropdown-panel absolute top-7 md:top-[50px] right-0 py-2 z-20 w-full hidden max-h-[338px] overflow-y-hidden">
+                                                <ul class="flex flex-col w-full bg-white overflow-y-scroll rounded border border-neutral-2-200 shadow-dropdown">
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 text-primary-1 justify-between icon-selected">Mới nhất</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Cũ nhất</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Giá từ thấp đến cao</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Giá từ cao đến thấp</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Giá từ cao đến thấp</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-body-2 text-neutral-1-900">
+                                            Kích cỡ:
+                                        </p>
+                                        <div class="w-full flex relative dropdown scrollbar">
+                                            <button class="dropdown-btn flex w-full justify-between items-center gap-2 pl-3 border border-neutral-2-200 rounded md:w-full">
+                                                <p class="text-body-2 text-neutral-1-900 ">Mới nhất</p>
+                                                <span class="twi-17-arrow-down-line text-2xl leading-6 text-neutral-1-500 p-3"></span>
+                                            </button>
+                                            <div class="dropdown-panel absolute top-7 md:top-[50px] right-0 py-2 z-20 w-full hidden max-h-[338px] overflow-y-hidden">
+                                                <ul class="flex flex-col w-full bg-white overflow-y-scroll rounded border border-neutral-2-200 shadow-dropdown">
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Mới nhất</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-body-2 text-neutral-1-900">
+                                            Sắp xếp theo:
+                                        </p>
+                                        <div class="w-full flex relative dropdown scrollbar">
+                                            <button class="dropdown-btn flex w-full justify-between items-center gap-2 pl-3 border border-neutral-2-200 rounded md:w-full">
+                                                <p class="text-body-2 text-neutral-1-900 ">Mới nhất</p>
+                                                <span class="twi-17-arrow-down-line text-2xl leading-6 text-neutral-1-500 p-3"></span>
+                                            </button>
+                                            <div class="dropdown-panel absolute top-7 md:top-[50px] right-0 py-2 z-20 w-full hidden max-h-[338px] overflow-y-hidden">
+                                                <ul class="flex flex-col w-full bg-white overflow-y-scroll rounded border border-neutral-2-200 shadow-dropdown">
+                                                    <li>
+                                                        <a href="#" class="w-full flex px-4 py-3 text-body-2 ">Mới nhất</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                                    <div class="flex flex-col w-full h-full p-3.5 pt-6 items-center gap-[38px] border border-primary-1 rounded-tl-[40px] rounded-br-[40px] bg-white justify-between">
+                                        <div class="w-7/12 xl:w-3/4">
+                                            <a href="product-detail.html">
+                                                <div class="relative pt-[150%] w-full">
+                                                    <img class="image-custom object-contain" src="../img/home/home-product-3.png">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="flex flex-col justify-center gap-3">
+                                            <div class="flex flex-col gap-2 pb-3 border-b border-neutral-2-200">
+                                                <h4 class="text-heading-4 text-secondary-1 font-semibold line-clamp-1 md:min-h-[32px]">
+                                                    <a href="product-detail.html">Gạo Long Châu</a>
+                                                </h4>
+                                                <p class="text-body-1 text-neutral-1-400 md:min-h-[48px] xl:min-h-[72px] xl:line-clamp-3">
+                                                    Gạo giống Nhật Japonica dẻo nhiều, cơm nhiều tạo cảm giác ngon miệng khi ăn. 
+                                                </p> 
+                                            </div>
+                                            <div class="flex justify-between gap-2 items-center text-primary-1">
+                                                <p class="font-semibold xl:text-heading-6">260.000đ</p>
+                                                <div class="w-fit h-fit border border-primary-1 rounded-full">
+                                                    <button class="flex gap-2.5 w-fit items-center justify-center px-6 py-2">
+                                                        <span class="twi-17-calendar-fill text-xl leading-5"></span>
+                                                        <span class="text-body-1 font-medium">Thêm</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full h-full p-3.5 pt-6 items-center gap-[38px] border border-primary-1 rounded-tl-[40px] rounded-br-[40px] bg-white justify-between">
+                                        <div class="w-7/12 xl:w-3/4">
+                                            <a href="product-detail.html">
+                                                <div class="relative pt-[150%] w-full">
+                                                    <img class="image-custom object-contain" src="../img/home/home-product-3.png">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="flex flex-col justify-center gap-3">
+                                            <div class="flex flex-col gap-2 pb-3 border-b border-neutral-2-200">
+                                                <h4 class="text-heading-4 text-secondary-1 font-semibold line-clamp-1 md:min-h-[32px]">
+                                                    <a href="product-detail.html">Gạo Long Châu</a>
+                                                </h4>
+                                                <p class="text-body-1 text-neutral-1-400 md:min-h-[48px] xl:min-h-[72px] xl:line-clamp-3">
+                                                    Gạo giống Nhật Japonica dẻo nhiều, cơm nhiều tạo cảm giác ngon miệng khi ăn. 
+                                                </p> 
+                                            </div>
+                                            <div class="flex justify-between gap-2 items-center text-primary-1">
+                                                <p class="font-semibold xl:text-heading-6">260.000đ</p>
+                                                <div class="w-fit h-fit border border-primary-1 rounded-full">
+                                                    <button class="flex gap-2.5 w-fit items-center justify-center px-6 py-2 ">
+                                                        <span class="twi-17-calendar-fill text-xl leading-5"></span>
+                                                        <span class="text-body-1 font-medium">Thêm</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full h-full p-3.5 pt-6 items-center gap-[38px] border border-primary-1 rounded-tl-[40px] rounded-br-[40px] bg-white justify-between">
+                                        <div class="w-7/12 xl:w-3/4">
+                                            <a href="product-detail.html">
+                                                <div class="relative pt-[150%] w-full">
+                                                    <img class="image-custom object-contain" src="../img/home/home-product-3.png">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="flex flex-col justify-center gap-3">
+                                            <div class="flex flex-col gap-2 pb-3 border-b border-neutral-2-200">
+                                                <h4 class="text-heading-4 text-secondary-1 font-semibold line-clamp-1 md:min-h-[32px]">
+                                                    <a href="product-detail.html">Gạo Long Châu</a>
+                                                </h4>
+                                                <p class="text-body-1 text-neutral-1-400 md:min-h-[48px] xl:min-h-[72px] xl:line-clamp-3">
+                                                    Gạo giống Nhật Japonica dẻo nhiều, cơm nhiều tạo cảm giác ngon miệng khi ăn. 
+                                                </p> 
+                                            </div>
+                                            <div class="flex justify-between gap-2 items-center text-primary-1">
+                                                <p class="font-semibold xl:text-heading-6">260.000đ</p>
+                                                <div class="w-fit h-fit border border-primary-1 rounded-full">
+                                                    <button class="flex gap-2.5 w-fit items-center justify-center px-6 py-2 ">
+                                                        <span class="twi-17-calendar-fill text-xl leading-5"></span>
+                                                        <span class="text-body-1 font-medium">Thêm</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full h-full p-3.5 pt-6 items-center gap-[38px] border border-primary-1 rounded-tl-[40px] rounded-br-[40px] bg-white justify-between">
+                                        <div class="w-7/12 xl:w-3/4">
+                                            <a href="product-detail.html">
+                                                <div class="relative pt-[150%] w-full">
+                                                    <img class="image-custom object-contain" src="../img/home/home-product-3.png">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="flex flex-col justify-center gap-3">
+                                            <div class="flex flex-col gap-2 pb-3 border-b border-neutral-2-200">
+                                                <h4 class="text-heading-4 text-secondary-1 font-semibold line-clamp-1 md:min-h-[32px]">
+                                                    <a href="product-detail.html">Gạo Long Châu</a>
+                                                </h4>
+                                                <p class="text-body-1 text-neutral-1-400 md:min-h-[48px] xl:min-h-[72px] xl:line-clamp-3">
+                                                    Gạo giống Nhật Japonica dẻo nhiều, cơm nhiều tạo cảm giác ngon miệng khi ăn. 
+                                                </p> 
+                                            </div>
+                                            <div class="flex justify-between gap-2 items-center text-primary-1">
+                                                <p class="font-semibold xl:text-heading-6">260.000đ</p>
+                                                <div class="w-fit h-fit border border-primary-1 rounded-full">
+                                                    <button class="flex gap-2.5 w-fit items-center justify-center px-6 py-2 ">
+                                                        <span class="twi-17-calendar-fill text-xl leading-5"></span>
+                                                        <span class="text-body-1 font-medium">Thêm</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex pt-2 gap-3 justify-center text-neutral-1-600 text-body-2">
+                                <div class="w-8 h-8 flex justify-center items-center"><button class="twi-17-arrow-2-left-fill text-neutral-1-400 text-base leading-none"></button></div>
+                                <div class="flex gap-1">
+                                    <div class="w-8 h-8 flex justify-center items-center text-white bg-primary-1 rounded-full"><button>1</button></div>
+                                    <div class="w-8 h-8 flex justify-center items-center"><button>2</button></div>
+                                    <div class="w-8 h-8 flex justify-center items-center"><button>3</button></div>
+                                    <div class="w-8 h-8 flex justify-center items-center"><button>4</button></div>
+                                    <div class="w-8 h-8 flex justify-center items-center"><button>5</button></div>
+                                </div>
+                                <div class="w-8 h-8 flex justify-center items-center"><button class="twi-17-arrow-2-right-fill text-neutral-1-900 text-base leading-none"></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </section>
+
+           <!-- Không có kết quả -->
+           <section>
+                <div class="mx-auto w-full relative xl:max-w-7xl">
+                    <div class="absolute hidden -z-10 -left-[25%] top-[10%] lg:flex"><img alt="" src="../img/home/home-decor_offer.png"></div>
+                    <div class="absolute -z-10 -bottom-[2%] -right-[25%] hidden max-w-xl 2xl:flex">
+                        <svg width="806" height="993" viewBox="0 0 392 612" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_2601_4321)">
+                            <g opacity="0.1">
+                            <path d="M301.087 0C303.357 6.05179 305.122 11.3471 307.139 16.8946C311.678 28.746 317.226 39.841 323.025 50.9359C330.59 65.5611 339.163 79.6819 347.989 93.5506C354.797 104.393 361.605 115.236 369.422 125.575C381.778 142.217 390.856 160.625 396.655 180.545C402.203 200.466 403.211 220.638 399.177 240.811C395.899 257.705 389.091 273.339 379.004 287.46C367.657 303.094 353.536 314.945 335.633 322.51C329.077 325.284 322.269 327.049 315.46 328.31C313.191 328.814 311.93 328.31 310.922 326.04C308.4 320.997 305.878 316.206 305.878 310.406C305.878 306.876 306.887 303.85 308.4 300.824C308.904 300.068 309.409 299.059 308.904 298.303C308.148 297.294 307.139 298.051 306.383 298.303C305.878 298.303 305.374 298.555 304.87 298.807C302.853 300.572 301.592 300.068 300.835 297.546C300.331 296.033 299.322 295.025 298.314 297.042C297.053 300.068 295.036 300.32 292.514 298.807C291.505 298.303 290.497 297.294 289.488 298.303C288.48 299.059 289.488 300.32 289.74 301.329C291.253 306.12 291.758 311.163 291.001 316.206C290.497 319.988 289.488 323.267 287.219 326.292C286.21 327.553 284.949 328.057 283.184 327.553C277.385 326.292 271.585 324.527 266.037 322.258C250.656 315.45 237.796 305.363 227.205 291.999C219.893 282.921 214.345 273.087 210.058 262.244C203.502 245.602 200.224 228.203 201.233 210.3C201.989 196.179 205.267 182.562 210.058 169.198C214.093 157.094 219.893 145.747 226.953 135.409C235.022 123.305 244.1 111.958 251.917 99.8546C259.229 89.0118 266.29 77.9168 272.846 66.5697C277.637 58.2485 282.176 49.9273 286.21 41.3539C292.262 27.9895 297.809 14.8773 301.087 0ZM356.814 205.004C357.067 207.274 354.293 207.778 354.041 209.795C353.536 212.821 352.276 215.343 350.763 218.117C346.476 225.681 339.92 230.977 333.112 236.272C328.321 239.802 322.773 242.072 317.73 245.098C310.165 249.636 304.113 255.688 301.844 264.514C300.331 270.565 300.835 276.869 301.844 283.173C302.853 287.964 304.618 288.721 308.904 286.199C318.234 280.904 326.051 273.591 333.112 265.522C333.616 264.766 334.12 263.253 335.381 264.009C336.642 264.766 336.39 266.027 336.137 267.287C335.885 268.296 335.129 269.053 334.624 269.809C327.816 276.617 321.764 284.434 313.191 289.477C312.182 289.982 311.678 290.99 311.678 291.747C311.93 292.503 313.191 292.251 313.948 292.251C320.251 291.747 326.555 291.747 332.607 290.234C339.163 288.721 345.719 286.704 351.267 281.913C360.092 274.348 365.64 265.27 366.649 253.671C367.153 245.098 367.657 236.524 365.64 227.951C363.118 220.134 361.605 212.065 356.814 205.004ZM300.079 270.566C299.827 268.296 300.079 265.522 299.322 262.749C297.557 255.94 293.018 251.401 288.227 246.863C282.428 241.315 274.863 238.037 268.811 232.994C261.246 226.942 255.951 219.63 251.16 211.308C250.908 210.552 250.908 209.543 249.647 209.795C248.639 210.048 249.143 211.056 249.143 211.813C249.143 225.681 252.925 238.541 259.229 250.645C264.272 260.227 270.828 268.8 278.645 276.113C283.184 280.4 287.975 284.434 293.523 287.46C295.036 288.217 296.801 288.973 297.557 286.451C299.07 281.408 300.331 276.365 300.079 270.566ZM248.134 213.073C248.134 211.056 248.134 209.039 248.134 207.022C248.134 205.761 248.639 204.248 246.874 203.744C245.361 203.491 245.108 205.004 244.604 206.013C240.57 214.082 237.796 222.908 236.787 231.733C235.779 242.576 234.266 253.419 238.552 264.262C240.065 268.044 241.83 271.574 244.604 274.6C254.69 285.695 267.298 290.99 282.176 291.495C283.689 291.495 286.462 292.503 286.967 291.242C287.471 289.73 285.201 288.469 283.689 287.46C274.359 279.391 266.794 269.809 260.49 259.218C251.917 244.845 248.386 229.212 248.134 213.073Z" fill="#72B626"/>
+                            <path d="M384.037 569.867C393.366 571.128 402.948 572.388 412.278 574.154C428.921 577.179 445.563 580.962 461.953 585.501C472.292 588.527 482.883 591.552 492.969 595.083C506.333 599.874 519.193 605.169 532.053 611.221C540.375 615.255 548.696 619.29 556.765 624.081C564.33 628.367 571.894 633.158 579.207 638.202C584.25 641.732 589.545 645.514 594.336 649.549C602.658 656.609 610.979 663.67 618.291 672.999C613.753 671.487 609.97 669.217 606.44 667.452C599.127 663.922 591.815 660.644 584.502 657.366C559.034 646.019 532.81 637.193 506.081 629.628C485.908 623.829 465.232 619.29 444.302 615.507C429.929 612.986 415.304 610.464 400.679 608.951C385.297 607.186 369.916 605.673 354.534 604.665C330.831 603.152 307.128 602.647 283.173 603.152C266.783 603.404 250.393 604.412 234.003 605.925C223.16 606.934 212.317 607.943 201.726 609.203C188.866 610.969 175.754 612.734 162.894 615.003C146.756 617.777 130.618 621.055 114.732 625.089C99.0981 628.872 83.7165 633.411 68.587 638.454C55.2226 642.993 42.1104 647.784 28.9982 653.079C19.4162 657.113 10.0863 661.905 0 665.183C3.27805 661.905 6.05179 658.374 9.582 655.601C17.1467 649.297 24.9636 642.993 33.0327 637.193C47.4057 627.107 62.7873 618.785 78.6733 610.969C92.2898 604.412 106.411 598.865 120.784 593.822C136.67 588.022 153.06 583.736 169.702 579.701C178.528 577.684 187.353 575.414 196.179 574.406C201.726 573.901 207.274 572.388 212.821 571.128C214.586 571.128 215.595 572.388 217.108 573.145C220.638 575.414 224.421 575.162 227.699 572.893C229.968 571.38 231.985 569.615 234.255 568.354C247.871 567.345 261.488 565.832 275.104 565.328C278.887 565.328 282.669 565.076 286.452 565.076C307.128 565.076 327.805 564.571 348.482 566.084C351.508 566.337 354.534 566.589 357.56 566.841C360.586 567.093 363.108 568.606 365.377 570.623C367.394 572.388 370.168 573.397 372.942 573.649C376.976 573.901 378.993 570.875 381.767 569.363C383.028 569.615 383.532 569.615 384.037 569.867C384.037 569.615 384.037 569.867 384.037 569.867Z" fill="#72B626"/>
+                            <path d="M482.115 290.987C482.62 300.065 479.089 307.882 474.298 315.447C468.499 324.272 460.178 330.576 451.352 335.871C445.805 339.149 440.005 341.671 433.953 344.193C424.623 348.227 415.041 351.757 405.964 356.044C403.19 357.305 400.921 359.07 399.155 361.844C396.13 366.635 398.399 370.417 403.19 372.182C408.737 374.199 414.537 373.947 420.337 373.191C424.371 372.686 428.406 371.93 432.44 371.174C436.979 370.165 440.761 367.895 444.796 366.13C449.083 364.113 452.613 360.835 456.143 357.809C462.699 352.514 468.751 346.21 474.298 339.654C478.081 335.115 481.107 329.82 484.133 325.029C489.428 316.707 493.715 307.63 497.749 298.552C501.279 290.987 503.549 282.666 506.07 274.597C508.34 267.284 510.861 260.224 512.879 252.911C515.148 244.842 518.174 237.025 521.2 229.461C524.226 222.4 527.504 215.34 531.538 208.784C533.808 205.001 536.329 201.219 540.364 198.95C543.138 197.437 545.407 197.437 548.181 198.697C550.702 199.958 551.711 201.976 551.459 204.749C551.207 209.036 551.459 213.575 548.937 217.609C547.929 219.374 547.929 221.644 547.424 223.661C542.885 241.06 539.607 258.459 536.329 276.11C534.564 285.692 533.051 295.022 531.538 304.604C529.269 319.229 526.495 333.602 521.704 347.723C517.922 358.566 513.131 368.652 507.583 378.486C504.053 384.79 499.514 390.59 495.228 396.137C490.184 402.441 483.88 407.736 477.577 412.78C472.029 417.318 466.229 421.353 460.43 425.135C456.647 427.657 452.613 429.422 448.578 431.691C442.274 435.474 435.466 438.5 428.91 441.526C420.085 445.812 411.007 449.847 402.433 454.386C396.634 457.412 391.591 461.446 385.791 464.472C378.226 468.759 371.418 473.802 365.618 479.854C360.071 485.401 355.784 491.705 353.767 499.774C351.498 508.6 351.75 516.921 354.019 525.746C356.541 536.085 361.584 544.91 366.879 553.736C368.392 556.51 370.662 559.031 372.427 561.553C373.183 562.561 374.444 563.57 373.435 564.831C372.427 566.092 370.914 564.831 369.905 564.074C366.375 561.301 362.845 558.527 359.567 555.501C352.254 548.441 345.446 540.624 339.898 532.05C335.107 524.738 331.073 516.921 327.795 508.6C320.734 491.453 316.448 473.55 314.43 454.89C312.665 438.5 313.422 422.109 316.952 405.971C318.717 397.902 321.239 390.085 324.517 382.521C327.795 374.956 332.081 367.643 337.125 360.835C342.168 354.279 347.715 348.227 354.271 343.184C361.332 337.637 368.644 332.846 376.713 328.811C388.06 323.264 399.408 317.716 410.755 312.421C420.337 307.882 430.171 303.847 438.744 297.796C446.309 292.5 452.613 285.944 456.9 277.623C459.925 272.075 465.221 268.797 471.273 267.284C475.055 266.276 477.577 268.293 479.089 272.58C481.611 278.884 481.611 284.936 482.115 290.987Z" fill="#72B626"/>
+                            <path d="M282.667 437.229C282.415 447.567 281.911 457.906 280.146 468.244C277.624 482.113 273.842 495.73 268.799 509.094C266.277 515.65 262.747 521.954 258.964 528.006C256.191 532.292 253.669 536.579 250.643 540.614C246.609 546.161 242.07 551.456 236.775 556.247C232.74 559.778 228.958 563.812 224.419 566.838C223.662 567.342 222.654 568.099 221.897 567.342C220.889 566.586 221.645 565.577 222.402 564.569C226.184 559.021 230.218 553.726 233.497 547.674C240.305 535.57 245.348 522.963 244.339 508.59C243.835 500.773 241.313 493.712 236.27 487.156C232.992 482.869 229.462 479.339 225.68 475.809C217.611 468.749 208.785 462.949 199.455 457.906C192.899 454.376 186.343 450.593 179.535 447.567C172.979 444.794 166.927 441.263 160.371 438.238C154.067 435.464 148.267 432.186 142.467 428.656C138.937 426.638 135.407 424.621 131.877 422.352C126.582 419.073 121.538 415.291 117 411.004C112.209 406.718 107.418 402.431 103.131 397.64C97.079 390.58 91.5316 383.267 87.2449 375.198C83.4625 368.138 79.6801 361.077 76.9064 353.512C74.637 347.208 72.6197 340.904 71.3589 334.348C70.0981 328.044 68.333 321.74 67.0723 315.437C65.5593 306.863 63.7942 298.542 62.5334 289.969C61.0205 278.874 59.0032 267.779 56.9859 256.684C54.4644 243.319 51.4384 230.207 47.6561 217.347C46.3953 212.556 45.1345 208.017 45.891 203.226C46.3953 199.444 49.169 197.427 52.9514 197.931C55.9773 198.435 58.751 199.948 60.5161 202.47C67.0722 210.539 71.3589 220.121 75.6456 229.451C80.1845 239.537 83.7147 250.128 86.7406 260.97C90.2708 273.83 94.3053 286.438 99.3485 298.542C103.131 307.62 107.922 316.193 112.713 324.766C116.243 330.818 120.025 336.618 124.564 341.913C129.86 347.965 135.407 354.269 141.963 359.312C147.006 363.347 152.554 366.625 158.353 369.398C161.379 370.911 164.657 371.92 167.935 372.424C175.248 373.937 182.561 374.442 190.125 373.937C196.934 373.433 200.464 368.39 198.194 363.347C197.186 360.825 195.169 359.312 192.899 357.799C185.334 353.512 177.013 350.739 168.944 347.208C162.388 344.183 155.58 341.409 149.024 338.131C136.92 332.079 127.338 323.758 120.53 312.411C116.243 305.098 114.73 297.281 115.234 288.96C115.487 284.421 115.487 279.63 117 275.343C119.017 268.787 123.556 267.022 129.86 270.048C136.416 273.326 140.198 278.874 143.476 284.925C146.25 289.716 150.284 293.247 154.571 296.525C160.119 300.811 166.422 304.089 172.474 307.62C182.813 313.419 194.16 316.949 204.498 322.497C212.82 326.784 221.393 330.818 229.462 335.861C235.766 339.896 241.818 344.435 247.617 348.974C253.669 353.765 258.46 359.816 262.747 366.372C269.051 375.702 273.337 386.041 276.363 396.884C278.885 405.457 281.154 413.778 282.163 422.604C282.163 426.89 282.667 431.934 282.667 437.229Z" fill="#72B626"/>
+                            </g>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_2601_4321">
+                            <rect width="392" height="612" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col gap-8 px-4 py-16 md:py-20 md:px-6 lg:px-2 2xl:px-0 lg:py-[120px]">
+                        <div class="flex flex-col pb-8 border-b border-neutral-2-200 gap-y-4 gap-x-10 justify-between md:flex-row md:justify-between animate-bottom" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+                            <h2 class="text-heading-4 font-semibold text-secondary-1 md:text-heading-2">
+                                Tìm kiếm “Gạo Long Châu”
+                            </h2>
+                            <form action="post" class="w-1/3">
+                                <input type="text" 
+                                placeholder="Tìm kiếm sản phẩm"
+                                class="w-full px-6 py-4 border border-primary-1 focus:outline-0 text-body-2 placeholder:text-neutral-1-300 text-neutral-1-700 rounded-lg">
+                            </form>
+                        </div>
+
+                        <div class="w-full flex flex-col gap-10">
+                            <div class="flex flex-col gap-6 animate-top" style="animation-delay: 400ms; animation-fill-mode: backwards;">
+                                <p class="text-secondary-1 xl:text-heading-4 font-semibold w-fit ">Tìm thấy 0 kết quả</p>
+                                <div class="w-full flex flex-col gap-3 items-center py-28">
+                                    <div class="w-full xl:w-2/5">
+                                        <div class="relative w-full pt-[72%]">
+                                            <img src="../img/Web-17/search-empty.svg" alt="" class="image-custom object-contain">
+                                        </div>
+                                    </div>
+                                    <p class="text-center text-body-1 text-neutral-1-900">
+                                        Không có kết quả bạn cần tìm
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <section class="border-t border-primary-1 bg-white">
+                <div class="w-full mx-auto xl:max-w-7xl">
+                    <div class="flex flex-col pt-10 px-4 gap-10 justify-between md:gap-20 md:flex-row md:px-6 md:pt-20 lg:px-2 xl:gap-40 2xl:px-0">
+                        <div class="flex flex-col gap-4 md:w-1/2">
+                            <div class="flex flex-col text-heading-4 font-semibold text-primary-1">
+                                <p>
+                                    CÔNG TY TNHH 
+                                </p>
+                                <p>
+                                    HỮU CƠ THUẬN THIÊN
+                                </p>
+                            </div>
+                            <div class="text-body-1 leading-6 text-neutral-1-600"><span class="font-medium text-neutral-1-900">Đại lý chính miền nam:</span> 536/3 Nguyễn Thị Đặng, Phường Hiệp Thành, Quận 12, TP.HCM</div>
+                            <div class="text-body-1 leading-6 text-neutral-1-600"><span class="font-medium text-neutral-1-900">Số điện thoại liên hệ:</span> 0944 456 457 - 0945 456 457 - 0948 456 457 - 0859 456 457
+                            -0772 456 457 0326 456 457 - 0385 456 457</div>
+                        </div>
+                        <div class="flex gap-10 md:gap-20 md:justify-between md:w-1/2 xl:gap-40">
+                            <div class="flex flex-col w-1/2 gap-6 md:w-fit">
+                                <div class="flex flex-col gap-1 w-fit">
+                                    <p class="text-heading-4 font-semibold text-neutral-1-800">Liên kết</p>
+                                    <div class="bg-primary-1 w-full h-[3px] rounded-full"></div>
+                                </div>
+                                <div class="flex flex-col text-body-1 font-medium text-neutral-1-900 gap-4">
+                                    <div class="hover:opacity-90">
+                                        <a href="index.html">
+                                            Trang chủ
+                                        </a>
+                                    </div>
+                                    <div class="hover:opacity-90">
+                                        <a href="introduction.html">
+                                            Giới thiệu
+                                        </a>
+                                    </div>
+                                    <div class="hover:opacity-90">
+                                        <a href="product.html">
+                                            Sản phẩm
+                                        </a>
+                                    </div>
+                                    <div class="hover:opacity-90">
+                                        <a href="blog.html">
+                                            Bài viết
+                                        </a>
+                                    </div>
+                                    <div class="hover:opacity-90">
+                                        <a href="contact.html">
+                                            Liên hệ
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col font-medium gap-6 w-fit">
+                                <div class="flex flex-col gap-1 w-fit">
+                                    <p class="text-heading-4 font-semibold text-neutral-1-800">Liên hệ</p>
+                                    <div class="bg-primary-1 w-full h-[3px] rounded-full"></div>
+                                </div>
+                                <div class="flex flex-col gap-6 lg:flex-row">
+                                    <div class="flex">
+                                        <a href="#" class="flex w-fit justify-center items-center ">
+                                            <i class="twi-17-facebook-fill text-[24px] text-white bg-info-500 p-3.5 rounded-full hover:opacity-90"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex">
+                                        <a href="#" class="flex w-fit justify-center items-center ">
+                                            <i class="twi-17-twitter-fill text-[24px] text-white bg-info-400 p-3.5 rounded-full hover:opacity-90"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex">
+                                        <a href="#" class="flex w-fit justify-center items-center">
+                                            <i class="twi-17-youtube-fill text-[24px] text-white bg-error-400 p-3.5 rounded-full hover:opacity-90"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="bg-primary-1 px-2 flex justify-center text-body-1 text-white mt-10 py-2.5 xl:mt-20">Copyright 2022 by T-web. All Rights Reserved.</div>
+            </section>
+        </footer> 
+    </body>
+</html> 
+

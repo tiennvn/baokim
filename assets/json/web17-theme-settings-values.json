@@ -1,0 +1,231 @@
+{
+	"name": "Web - 17",
+	"displayName": "Web - 17",
+	"description": "Reset theme",
+	"author": "The TMT - TWeb FE Team",
+	"website": "https://tweb.page",
+	"version": "1.0.0",
+	"issetuprecipe": false,
+	"categories": [
+		"Theme"
+	],
+	"tags": [],
+	"variables": {
+		
+	},
+	"steps": [
+		{
+			"name": "theme-settings",
+			"data": {
+				"themeName": "TheWeb17",
+				"settings": {
+					"address": "Số 1 Cống Quỳnh, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh",
+					"description": null,
+					"email": "info@gmail.com",
+					"logo": {
+						"fullUrl": "",
+						"url": "",
+						"name": "Undefined",
+						"redirectUrl": null
+					},
+					"phoneNumber": {
+						"phoneNumber": "0280974847",
+						"code": 0,
+						"format": "### ### ###"
+					},
+					"favicon": {
+						"fullUrl": "",
+						"url": "",
+						"name": "Undefined",
+						"redirectUrl": null
+					},
+                    "companyName": "CÔNG TY TNHH  HỮU CƠ THUẬN THIÊN",
+					"messengerCode": "",
+					"facebookFanpageCode": "",
+                    "tShop": "",
+                    "menuImage": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "homeLogoBanner": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "homeImageBanner": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "homeImageInformation": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "homeBannerTitle": "Thuận Thiên hạt gạo sạch cho <span class='text-primary-1'>sức khỏe vàng</span>",
+                    "homeBannerShortDescription": "Hữu cơ Thuận Thiên - Chăm sóc bữa ăn người việt",
+                    "homePhoneNumberFirst": {
+                        "phoneNumber": "0901009955",
+                        "code": 0,
+                        "format": "CODE###.##.##.##"
+                    },
+                    "homePhoneNumberSecond": {
+                        "phoneNumber": "0918456457",
+                        "code": 0,
+                        "format": "CODE###.##.##.##"
+                    },
+                    "homeImageBreadcrumb": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "introductionImageAction": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "introductionImageFirst": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "introductionImageSecond": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "introductionImageThird": {
+                        "fullUrl": null,
+                        "url": null,
+                        "name": null,
+                        "redirectUrl": null
+                    },
+                    "introductionImageBreadcrumb": "<span class='text-primary-1'> Thuận Thiên </span> Yêu Nông Nghiệp, Thương Nông Dân",
+                    "contactAddressFirst": "95-97-99 Võ Văn Tần, Phường Tân An, Quận Ninh Kiều, TP. Cần Thơ",
+                    "contactAddressSecond": "95-97-99 Võ Văn Tần, Phường Tân An, Quận Ninh Kiều, TP. Cần Thơ",
+                    "contactAddressThird": "95-97-99 Võ Văn Tần, Phường Tân An, Quận Ninh Kiều, TP. Cần Thơ",
+                    "contactAddressFourth": "95-97-99 Võ Văn Tần, Phường Tân An, Quận Ninh Kiều, TP. Cần Thơ",
+                    "contactAddressFifth": "95-97-99 Võ Văn Tần, Phường Tân An, Quận Ninh Kiều, TP. Cần Thơ",
+                    "contactPhoneNumber": {
+                        "phoneNumber": "0968084898",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "contactPhoneNumberFirst": {
+                        "phoneNumber": "0968084898",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "contactPhoneNumberSecond": {
+                        "phoneNumber": "0123456789",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "contactPhoneNumberThird": {
+                        "phoneNumber": "0123456789",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "contactPhoneNumberFourth": {
+                        "phoneNumber": "0123456789",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "contactPhoneNumberFifth": {
+                        "phoneNumber": "0123456789",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "footerPhoneNumber": {
+                        "phoneNumber": "0123456789",
+                        "code": 0,
+                        "format": "CODE### ### ###"
+                    },
+                    "footerAddress": "536/3 Nguyễn Thị Đặng, Phường Hiệp Thành, Quận 12, TP.HCM",
+                    "socialLinks": {
+                        "displayTitle": "Liên hệ",
+                        "items": [
+                            {
+                                "title": null,
+                                "icon": null,
+                                "url": null
+                            },
+                            {
+                                "title": null,
+                                "icon": null,
+                                "url": null
+                            },
+                            {
+                                "title": null,
+                                "icon": null,
+                                "url": null
+                            }
+                        ]
+                    },
+                    "links": {
+                        "displayTitle": "Liên kết",
+                        "items": [
+                            {
+                                "label": "Trang chủ",
+                                "title": "Trang chủ",
+                                "url": ""
+                            },
+                            {
+                                "label": "Giới thiệu",
+                                "title": "Giới thiệu",
+                                "url": "introduction"
+                            },
+                            {
+                                "label": "Sản phẩm",
+                                "title": "Sản phẩm",
+                                "url": ""
+                            },
+                            {
+                                "label": "Bài viết",
+                                "title": "Bài viết",
+                                "url": "blog"
+                            },
+                            {
+                                "label": "Liên hệ",
+                                "title": "Liên hệ",
+                                "url": "contact-us"
+                            }
+                        ]
+                    },
+                    "footerIcons": {
+                        "displayTitle": null,
+                        "items": [
+                            {
+                                "name": "",
+                                "title": "Số điện thoại",
+                                "description": null,
+                                "icon_RedirectUrl": null
+                            },
+                            {
+                                "name": "",
+                                "title": "Email",
+                                "description": null,
+                                "icon_RedirectUrl": null
+                            },
+                            {
+                                "name": "",
+                                "title": "Địa chỉ",
+                                "description": null,
+                                "icon_RedirectUrl": null
+                            }
+                        ]
+                    }
+				}
+			}
+		}
+	]
+}

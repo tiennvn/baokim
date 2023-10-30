@@ -1,0 +1,196 @@
+{% assign imageDecor = "Web-17/decor-primary-full.svg" | generate_proxy_url: width: null, height: null %}
+{% assign imgResultEmptyUrl = "Web-17/search-empty.svg" | generate_proxy_url: width: null, height: null %}
+{% assign culture = "vi-VN" %}
+{% assign currencyFormat = "{0:c}" %}
+
+{% assign queries = Request.Query %}
+
+{% assign filter = Model.Properties.Request %}
+{% assign offset = filter.Offset %}
+{% assign limit = filter.PageSize %}
+
+{% assign key = queries.key[0] %}
+{% assign categoryIDs = queries.categoryIDs[0] %}
+{% assign maxPrice = filter.MaxPrice %}
+{% assign minPrice = filter.MinPrice %}
+{% assign providerIDs = queries.providerIDs[0] %}
+{% assign brandIDs = queries.brandIDs[0] %}
+{% assign tags = filter.Tags[0] %}
+{% assign isPromotion = filter.IsPromotion %}
+{% assign orderField = filter.OrderField %}
+
+{% assign keyParam = "key=" | append: key %}
+{% assign categoryIDsParam = "&categoryIDs=" | append: categoryIDs %}
+{% assign maxPriceParam = "&maxPrice=" | append: maxPrice %}
+{% assign minPriceParam = "&minPrice=" | append: minPrice %}
+{% assign providerIDsParam = "&providerIDs=" | append: providerIDs %}
+{% assign brandIDsParam = "&brandIDs=" | append: brandIDs %}
+{% assign tagsParam = "&tags=" | append: tags %}
+{% assign isPromotionParam = "&isPromotion=" | append: isPromotion %}
+{% assign orderFieldParam = "&orderField=" | append: orderField %}
+
+{% assign rootCategoriesProduct = "" | get_root_shop_categories: limit: 49 %}
+{% assign brandList = "" | get_brands: limit: 49 %}
+{% assign priceFilter = "0, 2, 4, 7, 13, 20" | split: ", " %}
+{% assign promotionFilter = "0, 1, 2" | split: ", " %}
+{% assign orderFieldFilter = "0, 3, 4, 5, 6" | split: ", " %}
+
+{% if maxPrice == 0 %}
+  {% assign productResult = filter.Key | search_products: offset: offset, limit: 12, includeParent: filter.CategoryIDs, minPrice: minPrice, brandId: filter.BrandIDs, providerId: filter.ProviderIDs, promotion: isPromotion, tags: filter.Tags[0], orderField: orderField %}
+{% else %}
+  {% assign productResult = filter.Key | search_products: offset: offset, limit: 12, includeParent: filter.CategoryIDs, minPrice: minPrice, maxPrice: maxPrice, brandId: filter.BrandIDs, providerId: filter.ProviderIDs, promotion: isPromotion, tags: filter.Tags[0], orderField: orderField %}
+{% endif %}
+
+{{ 'Tìm kiếm' | page_title_segment: position: '0' }}
+{{ Site.SiteName | page_title_segment: position: 'end' }}
+
+{% zone "Header" %}
+  {{ 'Module__MenuWrapper' | shape_new | shape_properties: Shape: 'FE__Menu' | shape_render }}
+{% endzone %}
+
+{% zone "Footer" %}
+  {{ "Module__FooterWrapper" | shape_new | shape_properties: Shape: 'FE__Footer' | shape_render }}
+{% endzone %}
+
+<main>
+
+  <section>
+    <div class="bg-primary-4 mt-20 lg:overflow-hidden">
+      <div class="mx-auto w-full xl:max-w-7xl lg:animate-top">
+        {% assign breadcrumbList = '' | split: ',' | init_breadcrumb: lastTitle: 'Tìm kiếm' %}
+        {{ 'Module__Shop_BreadcrumbCustomWrapper' | shape_new | shape_properties: Shape: 'FE__Breadcrumb', Data: breadcrumbList | shape_render }}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto w-full relative xl:max-w-7xl">
+      <div class="absolute hidden -z-10 -left-[38%] top-1/4 xl:flex">
+        <img
+          src="{{ imageDecor }}"
+          class="object-contain w-[600px] h-[626px]"
+          alt="">
+      </div>
+
+      <div class="flex flex-col gap-8 py-12 px-6 md:py-20 lg:px-2 lg:py-[120px] 2xl:px-0">
+        <div class="flex flex-col pb-8 border-b border-neutral-2-200 gap-y-4 gap-x-10 justify-between animate-bottom lg:flex-row" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+          <div class="text-header-1 font-semibold text-secondary-1 md:text-heading-3 xl:text-heading-2">
+            {% if key != nil or tags != nil %}
+              {% if key != nil %}
+                {{ 'Tìm kiếm "' | append: key | append: '"' | raw }}
+              {% else %}
+                {{ 'Tìm kiếm "' | append: tags | append: '"' | raw }}
+              {% endif %}
+            {% else %}
+              <p class="uppercase">
+                TẤT CẢ
+                <span class="text-primary-1">SẢN PHẨM</span>
+              </p>
+            {% endif %}
+          </div>
+
+          {{ "FE__Search_Input" | shape_new | shape_render }}
+        </div>
+
+        <div class="w-full flex flex-col gap-10 ">
+          <div class="flex flex-col gap-6 animate-top" style="animation-delay: 400ms; animation-fill-mode: backwards;">
+            <p class="text-secondary-1 text-title-1 font-semibold w-fit">
+              {{ 'Tìm thấy ' | append: productResult.TotalResult | append: ' kết quả' | t | raw }}
+            </p>
+            {% if productResult.Items.size > 0 %}
+              <div class="grid grid-cols-1 w-full gap-4 items-center lg:grid-cols-2 lg:gap-8 xl:grid-cols-4">
+                {{ "FE__Search_Dropdown_Category" | shape_new | shape_render }}
+                {{ "FE__Search_Dropdown_Brand" | shape_new | shape_render }}
+                {{ "FE__Search_Dropdown_Promotion" | shape_new | shape_render }}
+                {{ "FE__Search_OrderField" | shape_new | shape_render }}
+              </div>
+              <div class="w-full grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {{ 'Module__Shop_ProductListWrapper' | shape_new | shape_properties: Shape: 'FE__Shop_ProductList', Data: productResult | shape_render }}
+
+              </div>
+            {% else %}
+              <p class="text-body-1 text-neutral-1-900">
+                Không có kết quả bạn cần tìm
+              </p>
+            {% endif %}
+          </div>
+          {{
+             "Module__Blog_PaginationWrapper"
+           | shape_new
+           | shape_properties:
+           pageIndex: productResult.PageIndex,
+           PageSize: 12,
+           Total: productResult.TotalResult,
+           Shape: "FE__Blog_Pagination"
+           | shape_render }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="react-notification"></div>
+  <div id="react-modal-product"></div>
+
+</main>
+
+{% scriptblock depends_on: "jQuery", at: "Foot" %}
+  const initpXDropdown = () => {
+  const dropdownList = document.querySelectorAll(".dropdown");
+                                                                                        window.addEventListener("click", () => {
+                                                                                          dropdownList.forEach((item) => {
+                                                                                            item.classList.remove("active-dropdown");
+                                                                                          });
+                                                                                        });
+                                                                                        dropdownList.forEach((item) => {
+                                                                                            const dropdownBtn = item.querySelector(".dropdown-btn");
+                                                                                            dropdownBtn.addEventListener("click", (event) => {
+                                                                                              event.stopPropagation();
+                                                                                              dropdownList.forEach((item) => {
+                                                                                                item.classList.remove("active-dropdown");
+                                                                                              });
+                                                                                              item.classList.toggle("active-dropdown");
+                                                                                            });
+                                                                                          });
+                                                                                        };
+                                                                                        initpXDropdown();{% endscriptblock %}
+{% scriptblock depends_on: "jQuery", at: "Foot" %}
+  const tagSearch = document.querySelectorAll(".tag-search");
+  tagSearch.forEach( tag => {
+                                                                                          const delBtn = tag.querySelector(".del-btn");
+                                                                                          const url = window.location.href;
+                                                                                          if (delBtn){
+                                                                                            delBtn.addEventListener('click', e => {
+                                                                                              e.preventDefault();
+                                                                                              var urlUpdate = "";
+                                                                                              var dataUpdate = "";
+                                                                                              let indexSearch = url.search("search");
+                                                                                              if(delBtn.hasAttribute("data-category") || delBtn.hasAttribute("data-brand")){
+                                                                                                let data = delBtn.attributes[0].value;
+                                                                                                let index = url.indexOf(data, indexSearch);
+                                                                                                switch (url.charAt(index-1)){
+                                                                                                  case ",":
+                                                                                                    dataUpdate = "," + data;
+                                                                                                    break;
+                                                                                                  case "=":
+                                                                                                    if(url.charAt(index + data.length) == ",")
+                                                                                                      dataUpdate = data + ",";
+                                                                                                    else  
+                                                                                                      dataUpdate = data;
+                                                                                                    break;
+                                                                                                  default:
+                                                                                                    break;
+                                                                                                }
+                                                                                                urlUpdate = url.replace(dataUpdate, "");
+                                                                                              }
+                                                                                              else {
+                                                                                                let dataMin = delBtn.attributes[0].value;
+                                                                                                let dataMax = delBtn.attributes[1].value;
+                                                                                                let indexMin = url.indexOf(dataMin, indexSearch);
+                                                                                                let indexMax = url.indexOf(dataMax, indexSearch);
+                                                                                                urlUpdate = url.replace( dataMin, "0").replace( dataMax, "0");
+                                                                                              }
+                                                                                              window.location.href = urlUpdate;
+                                                                                              tag.remove();
+                                                                                            })
+                                                                                          }
+                                                                                        }){% endscriptblock %}

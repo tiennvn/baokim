@@ -1,0 +1,284 @@
+
+// hover zoomIn
+@mixin transition($name, $duration, $delay, $ease) {
+    transition: {
+        property: $name;
+        duration: $duration ;
+        delay: $delay; 
+        timing-function: $ease;
+    }
+  }
+//   một số ví dụ về hover . lưu ý cách đặt tên class (tùy biến phù hợp với nội dung của layout) phải có nghĩa tường minh, không đặt các class tổng quát như ví dụ
+.zoomIn{
+    transform: scale(1);
+    @include transition(all,0.2s,0s,ease-in-out);
+    &:hover{
+        transform: scale(1.1);
+        @include transition(all,0.3s,0s,ease-in-out);
+    }
+}
+.zoomOut{
+    transform: scale(1);
+    @include transition(all,0.2s,0s,ease-in-out);
+    &:hover{
+        transform: scale(0.9);
+        @include transition(all,0.3s,0s,ease-in-out);
+    }
+}
+.moveUp{
+    transform: translateY(0);
+    @include transition(all,0.2s,0s,cubic-bezier(0.25, 0.1, 0.25, 1));
+    &:hover{
+        transform: translateY(-30px);
+        @include transition(all,0.2s,0s,cubic-bezier(0.25, 0.1, 0.25, 1));
+    }
+}
+.moveDown{
+    transform: translateY(0);
+    @include transition(all,0.2s,0s,cubic-bezier(0.25, 0.1, 0.25, 1));
+    &:hover{
+        transform: translateY(30px);
+        @include transition(all,0.2s,0s,cubic-bezier(0.25, 0.1, 0.25, 1));
+    }
+}
+.overflow{
+    opacity: 0;
+    transform: translateY(0);
+    @include transition(all,0.2s,0s,cubic-bezier(0.25, 0.1, 0.25, 1));
+    &:hover{
+        opacity: 1;
+        transform: translateY(-250px);
+        @include transition(all,0.2s,0s,cubic-bezier(0.25, 0.1, 0.25, 1));
+    }
+
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    margin: 35px;
+    border: 3px solid blue;
+    background-image: radial-gradient(circle at center , blue 50%, transparent 50%);
+    background-repeat: no-repeat;
+    
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    border-radius: 30px;
+    @include transition(all,0.8s,0s,ease-in-out);
+    &:hover {
+        background-size: 5000% 5000%;
+        color: blue;
+        @include transition(all,0.4s,0s,ease-in-out);
+    }
+}
+
+/* animation */
+/* lưu ý: các thông số của animation có thể thay đổi phù hợp với yêu cầu của các layout, một số animation là kết hợp của các animation bên dưới */
+@mixin keyframes($name){
+    @keyframes #{$name}{
+        @content;
+    }
+}
+@mixin animate($animation,$duration,$method,$times){
+    animation: $animation $duration $method $times;
+}
+
+// fade in 
+.fadeIn { 
+    @include keyframes(fadeIn) {
+        0% {
+            opacity: 0;
+        }
+      100% {
+            opacity: 1;
+        }
+    }
+    @include animate(fadeIn,1s,ease-in-out,0.1s);
+}
+
+// fade in up
+.fadeInUp { 
+    @include keyframes(fadeInUp) {
+        0% {
+            transform:translateY(64px); 
+            opacity: 0;
+        }
+      100% {
+            transform:translateY(0); 
+            opacity: 1;
+        }
+    }
+    @include animate(fadeInUp,7s,ease-in-out,0.1s);
+    
+}
+
+// fade in down
+.fadeInDown { 
+    @include keyframes(fadeInDown) {
+        0% {
+            transform:translate(0px, -64px); 
+            opacity: 0;
+        }
+      100% {
+            transform:translate(0px, 0); 
+            opacity: 1;
+        }
+    }
+    @include animate(fadeInDown,7s,ease-in-out,0.1s);
+    
+}
+
+// fade in left
+.fadeinLeft { 
+    @include keyframes(fadeinLeft) {
+        0% {
+            opacity:0;
+            transform: translateX(-64px);
+        }
+        100% {
+            opacity:1;
+            transform: translateX(0);
+        }
+    }
+    @include animate(fadeinLeft, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
+}
+ 
+// fade in right
+.fadeinRight { 
+    @include keyframes(fadeinRight) {
+        0% {
+            opacity:0;
+            transform: translateX(64px);
+        }
+        100% {
+            opacity:1;
+            transform: translateX(0);
+        }
+    }
+    @include animate(fadeinRight, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
+}
+
+// fade Zoom in
+.fadeZoomin { 
+    @include keyframes(fadeZoomin) {
+        0% {
+            opacity:0;
+            transform: scale(0.75);
+        }
+        100% {
+            opacity:1;
+            transform: scale(1);
+        }
+    }
+    @include animate(fadeZoomin, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
+}
+
+// fadeZoomout
+.fadeZoomout { 
+    @include keyframes(fadeZoomout) {
+        0% {
+            opacity:0;
+            transform: scale(1);
+        }
+        100% {
+            opacity:1;
+            transform: scale(0.75);
+        }
+    }
+    @include animate(fadeZoomout, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
+}
+
+// flip in left
+.flipInLeft { 
+    @include keyframes(flipInLeft) {
+        0% {
+            opacity:0;
+            transform: rotateY(-30deg);
+           
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg);
+        }
+    }
+    @include animate(flipInLeft,1s,ease-in-out,0.1s);
+}
+
+// flip in right
+.flipInRight { 
+    @include keyframes(flipInRight) {
+        0% {
+            opacity:0;
+            transform: rotateY(30deg);
+           
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg);
+        }
+    }
+    @include animate(flipInRight,1s,ease-in-out,0.1s);
+}
+
+// flip move in up
+.flipMoveInUp { 
+    @include keyframes(flipMoveInUp) {
+        0% {
+            opacity:0;
+            transform: rotateY(-30deg) translateY(100px);
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg) translateY(0);
+        }
+    }
+    @include animate(flipMoveInUp,1s,ease-in-out,0.1s);
+}
+
+// flip move in down
+.flipMoveInDown { 
+    @include keyframes(flipMoveInDown) {
+        0% {
+            opacity:0;
+            transform: rotateY(-30deg) translateY(-100px);
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg) translateY(0);
+        }
+    }
+    @include animate(flipMoveInDown,1s,ease-in-out,0.1s);
+}
+
+// fase flip X
+.fadeFlipX { 
+    @include keyframes(fadeFlipX) {
+        0% {
+            opacity:0;
+            transform: rotateX(-10deg);
+            animation-duration: .2s;
+            animation-delay: .6;
+        }
+        25% {
+            opacity:1;
+            transform: rotateX(16deg);
+            animation-duration: .2s;
+            animation-delay: .8;
+        }
+        50% {
+            opacity:1;
+            transform: rotateX(-9deg);
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(3deg) ;
+            animation-duration: .2s;
+            animation-delay: 1s;
+        }
+    }
+    @include animate(fadeFlipX, 1s,ease-in-out,0.5s);
+}
+
+
+
+

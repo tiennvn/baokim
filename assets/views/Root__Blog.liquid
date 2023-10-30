@@ -1,0 +1,106 @@
+{% assign blog = Model.Data %}
+{% assign currentCategory = blog.CurrentCategoryId | get_blog_categories_by_id %}
+{% assign breadcrumbList = currentCategory | category_to_breadcrumb %}
+
+{% assign imageDecor = "Web-17/decor-primary-full.svg" | generate_proxy_url: width: null, height: null %}
+{% assign imageDecorBgPrimary = "Web-17/decor-bg-primary.svg" | generate_proxy_url: width: null, height: null %}
+
+{% assign topPosts = "Desc" | get_posts_by_view: limit: 6 %}
+{% assign trendingPosts = 7 | get_trending_posts_date_to_date: offset: 0, limit: 7 %}
+{% assign newestPosts = "Newest" | get_posts: limit: 4 %}
+
+{% assign defaultHomepageUrl = "~/" | absolute_url %}
+
+{% zone "Header" %}
+  {{ 'Module__MenuWrapper' | shape_new | shape_properties: Shape: 'FE__Menu' | shape_render }}
+{% endzone %}
+
+{% zone "Footer" %}
+  {{ "Module__FooterWrapper" | shape_new | shape_properties: Shape: 'FE__Footer' | shape_render }}
+{% endzone %}
+
+{{ 'Tin tức' | page_title_segment: position: '0' }}
+{{ Site.SiteName | page_title_segment: position: 'end' }}
+
+<main>
+  <section>
+    <div class="bg-primary-4 mt-20">
+      <div class="mx-auto w-full xl:max-w-7xl">
+        {% assign breadcrumbList = '' | split: ',' | init_breadcrumb: lastTitle: 'Bài viết' %}
+        {{ 'Module__Blog_BreadcrumbWrapper' | shape_new | shape_properties: Shape: 'FE__Breadcrumb', Data: breadcrumbList | shape_render }}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="w-full relative inset-0 mx-auto overflow-hidden">
+        <div class="hidden md:flex absolute w-[138%] -left-[13%] -top-[20%] -z-10 lg:w-[112%] lg:-top-1/4 lg:-left-[10%] xl:-left-[8%] xl:w-4/5 2xl:-left-[4%] 2xl:w-[54%]">
+            <div class="relative w-full pt-[109%]">
+                <img src="{{ imageDecor }}" class="image-custom object-contain"
+                    alt="">
+            </div>
+        </div>
+        <div class="w-full mx-auto xl:max-w-7xl">
+            <div class="flex flex-col gap-10 px-6 py-12 md:py-20 lg:px-2 xl:py-[120px] 2xl:px-0">
+                <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4 lg:animate-bottom" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+                    <h2 class="font-semibold text-secondary-1 uppercase whitespace-nowrap text-header-1 md:text-heading-3 lg:text-heading-2">
+                        MỘT SỐ <span class="text-primary-1">BÀI VIẾT</span> NỔI BẬT</h2>
+                    <div class="border-t border-primary-1 flex-auto w-full"></div>
+                </div>
+                {{ "Module__Blog_PostListWrapper" | shape_new | shape_properties: Data: topPosts, Shape: "FE__Post_MostView" | shape_render }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+  {% if trendingPosts.Items.size > 0 %}
+    <div class="w-full bg-primary-4 relative inset-0 overflow-hidden">
+      <div class="absolute w-[125%] -bottom-[5%] -right-[22%] md:w-[66%] md:-right-[12%] xl:w-[28%] xl:bottom-0 xl:-right-[5%]">
+        <div class="relative w-full pt-[115%] md:pt-[109%]">
+            <img src="{{ imageDecorBgPrimary }}" class="image-custom object-contain" alt="">
+        </div>
+      </div>
+      <div class="mx-auto relative w-full xl:max-w-7xl">
+        <div class="flex flex-col py-12 gap-y-16 md:py-20">
+          <div class="flex justify-center items-center gap-4 reveal fadeInUp">
+            <span class="border-t border-primary-1 flex-auto"></span>
+            <h2 class="text-header-1 md:text-heading-3 lg:text-heading-2 font-semibold text-secondary-1 text-center whitespace-nowrap uppercase">
+                BÀI VIẾT
+                <span class="text-primary-1">TRONG TUẦN</span>
+            </h2>
+            <span class="border-t border-primary-1 flex-auto"></span>
+          </div>
+          {{ "Module__Blog_PostListWrapper" | shape_new | shape_properties: Data: trendingPosts, Shape: "FE__Blog_PostList_Trending" | shape_render }}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="w-full mx-auto xl:max-w-7xl">
+      <div class="w-full px-6 lg:px-2 2xl:px-0">
+        <div class="w-full border-t border-primary-1"></div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+          
+  <section>
+    <div class="w-full mx-auto xl:max-w-7xl">
+      <div class="flex flex-col w-full gap-5 py-20 px-6 lg:px-2 lg:py-[120px] lg:gap-20 2xl:px-0">
+        <div class="flex flex-col w-full gap-5 lg:gap-10">
+          {{ "Module__Blog_PostListWrapper" | shape_new | shape_properties: Data: newestPosts, Shape: "FE__Post_Newest" | shape_render }}
+        </div>
+        <div class="flex justify-center">
+          {% a 
+            controller: "TopicV2",
+            route_action: "Suggest",
+            route_area: "TWeb.Topics",
+            class: "flex items-center w-fit py-2 px-6 border border-primary-1 rounded-full gap-2.5 text-body-1 font-medium text-primary-1 bg-white btn-line" %}
+              <span class="twi-17-arrow-outward-fill text-xl leading-none"></span>
+              <span>Xem tất cả</span>
+          {% enda %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

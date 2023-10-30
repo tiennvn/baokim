@@ -1,0 +1,31 @@
+header{
+    .menu-collapse, .sub-menu-collapse{
+        @apply max-h-0 overflow-y-hidden xl:max-h-screen xl:overflow-y-visible;
+        transition: max-height .5s ease;
+        &.collapse{
+            @apply max-h-screen visible;
+            transition: max-height 1s ease-in-out;
+        }
+    }
+
+    .wrapper-collapse.collapse{
+        @apply visible border border-primary-1 rounded-md;
+        > div:first-child{
+            @apply bg-primary-1 text-white rounded-t;
+            span{ 
+                @apply text-white;
+            }
+        }
+    }
+    
+    .btn-collapse, .btn-sub-collapse{
+        transition: transform .3s ease-in-out;
+        &.collapse{
+            @apply rotate-180 visible;
+        }
+    }
+}
+
+.menu-list_item {
+    @apply text-body-1 font-medium fixed flex-col w-full h-screen p-4 pt-1 z-20 bg-white top-20 left-0 xl:static xl:h-fit xl:flex-row xl:top-0 xl:w-fit xl:bg-primary-1 xl:text-white/60 xl:p-0
+}

@@ -1,0 +1,25 @@
+{{ 'Giỏ hàng' | page_title_segment: position: '0' }}
+{{ Site.SiteName | page_title_segment: position: 'end' }}
+
+{% zone "Header" %}
+  {{ 'Module__MenuWrapper' | shape_new | shape_properties: Shape: 'FE__Menu' | shape_render }}
+{% endzone %}
+
+{% zone "Footer" %}
+  {{ "Module__FooterWrapper" | shape_new | shape_properties: Shape: 'FE__Footer' | shape_render }}
+{% endzone %}
+<main>
+  <section class="bg-primary-4 mt-20 lg:animate-fade">
+    <div class="mx-auto w-full xl:max-w-7xl">
+      {% assign breadcrumbList = '' | split: ',' | init_breadcrumb: lastTitle: 'Giỏ hàng' %}
+      {{ 'Module__Shop_BreadcrumbCustomWrapper' | shape_new | shape_properties: Shape: 'FE__Breadcrumb', Data: breadcrumbList | shape_render }}
+    </div>
+  </section>
+
+  <section>
+    <div id="shopping-cart"></div>
+  </section>
+
+  <div id="react-notification"></div>
+
+</main>

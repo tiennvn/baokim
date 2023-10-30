@@ -1,0 +1,67 @@
+<section class="border-t border-primary-1 bg-white">
+  <div class="w-full mx-auto xl:max-w-7xl">
+    <div class="flex flex-col pt-10 px-4 gap-10 justify-between md:gap-20 md:flex-row md:px-6 md:pt-20 lg:px-2 xl:gap-40 2xl:px-0">
+      <div class="flex flex-col gap-4 md:w-7/12">
+        <div class="flex flex-col text-header-1 font-semibold text-primary-1 xl:text-heading-4">
+          {{ ThemeSettings.companyName | raw }}
+        </div>
+        <div class="text-body-1 leading-6 text-neutral-1-600">
+          <span class="font-medium text-neutral-1-900">Đại lý chính miền nam:</span>
+          {{ ThemeSettings.footerAddress | raw }}
+        </div>
+        <div class="text-body-1 leading-6 text-neutral-1-600 line-clamp-4 lg:line-clamp-3 xl:line-clamp-2">
+          <span class="font-medium text-neutral-1-900">Số điện thoại liên hệ:</span>
+          {{ ThemeSettings.contactPhoneNumber | phone | raw }} - {{ ThemeSettings.contactPhoneNumberFifth | phone | raw }} - {{ ThemeSettings.contactPhoneNumberFirst | phone | raw }} - {{ ThemeSettings.contactPhoneNumberFourth | phone | raw }} - {{ ThemeSettings.contactPhoneNumberSecond | phone | raw }} - {{ ThemeSettings.contactPhoneNumberThird | phone | raw }} - {{ ThemeSettings.footerPhoneNumber | phone | raw }}
+        </div>
+      </div>
+      <div class="flex gap-10 md:gap-20 md:justify-between md:w-5/12 xl:gap-40">
+        <div class="flex flex-col w-1/2 gap-6 md:w-fit">
+          <div class="flex flex-col gap-1 w-fit">
+            <p class="text-heading-4 font-semibold text-neutral-1-800">{{ ThemeSettings.links.displayTitle | raw }}</p>
+            <div class="bg-primary-1 w-full h-[3px] rounded-full"></div>
+          </div>
+          <div class="flex flex-col text-body-1 font-medium text-neutral-1-900 gap-4">
+            {% for item in ThemeSettings.links.items %}
+              <div class="hover:opacity-90">
+                <a href="{{ item.url | prepend: '~/' | absolute_url }}">
+                  {{ item.title | raw }}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="flex flex-col font-medium gap-6 w-fit">
+          <div class="flex flex-col gap-1 w-fit">
+            <p class="text-heading-4 font-semibold text-neutral-1-800">{{ ThemeSettings.socialLinks.displayTitle | raw }}</p>
+            <div class="bg-primary-1 w-full h-[3px] rounded-full"></div>
+          </div>
+          <div class="flex flex-col gap-6 lg:flex-row">
+            <div class="flex">
+              <a href="#" class="flex w-fit justify-center items-center ">
+                <i class="twi-17-facebook-fill text-[24px] text-white bg-info-500 p-3.5 rounded-full hover:opacity-90"></i>
+              </a>
+            </div>
+            <div class="flex">
+              <a href="#" class="flex w-fit justify-center items-center ">
+                <i class="twi-17-twitter-fill text-[24px] text-white bg-info-400 p-3.5 rounded-full hover:opacity-90"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-primary-1 px-2 flex justify-center text-body-1 text-white mt-10 py-2.5 xl:mt-20">Copyright 2022 by T-web. All Rights Reserved.</div>
+</section>
+<div class="w-fit right-8 fixed bottom-28 z-10">
+  <button id="scrollToTopBtn" class="w-11 h-11 rounded-full hidden justify-center items-center bg-white shadow-dropdown">
+    <span class="twi-17-arrow-up-line text-2xl leading-6 text-neutral-700"></span>
+  </button>
+</div>
+<div>
+  {{ ThemeSettings.tShop | raw }}
+</div>
+
+<div>
+  {{ ThemeSettings.messengerCode | raw }}
+</div>

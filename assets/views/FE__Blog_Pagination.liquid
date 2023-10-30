@@ -1,0 +1,218 @@
+{% assign actionName = Request.Route.action %}
+{% assign controllerName = Request.Route.controller %}
+{% assign area = Request.Route.area %}
+
+{% assign path = Request.Path | prepend: '~' | absolute_url %}
+{% assign queryString = Request.QueryString %}
+
+{% assign PAGE_QUERY_KEY = 'page=' %}
+{% assign pageQuery = PAGE_QUERY_KEY | append: Request.Query.page %}
+{% if pageQuery == PAGE_QUERY_KEY %}
+{% assign pageQuery = 'page=1' %}
+
+{% if Request.QueryString == nil %}
+{% assign queryString = Request.QueryString | append: '?' | append: pageQuery %}
+{% else %}
+{% assign queryString = Request.QueryString | append: '&' | append: pageQuery %}
+{% endif %}
+{% endif %}
+
+{% unless queryString contains "size" %}
+{% assign sizeQuery = '&size=' | append: Model.Data.PageSize %}
+{% assign queryString = queryString | append: sizeQuery %}
+{% endunless %}
+
+{% assign data = Model.Data %}
+
+{% assign MAXIMUM_PAGE_NUMBERS_TO_DISPLAY = 5 %}
+{% assign firstPageToDisplay = 1 %}
+{% assign lastPageToDisplay = data.PageCount %}
+{% assign pageNumbersToDisplay = lastPageToDisplay %}
+
+{% if data.PageCount > MAXIMUM_PAGE_NUMBERS_TO_DISPLAY %}
+{% assign PAGE_NUMBERS = MAXIMUM_PAGE_NUMBERS_TO_DISPLAY | divided_by: 2 %}
+{% assign firstPageToDisplay = data.PageNumber | minus: PAGE_NUMBERS %}
+
+{% comment %}
+Set lại page nếu không hợp lệ
+{% endcomment %}{% if firstPageToDisplay < 1
+  %}
+  {%
+  assign
+  firstPageToDisplay=1
+  %}
+  {%
+  endif
+  %}
+  {%
+  assign
+  pageNumbersToDisplay=MAXIMUM_PAGE_NUMBERS_TO_DISPLAY
+  %}
+  {%
+  assign
+  lastPageToDisplay=firstPageToDisplay
+  |
+  plus:
+  pageNumbersToDisplay
+  |
+  minus:
+  1
+  %}
+  {%
+  comment
+  %}
+  Kiểm
+  tra
+  lại
+  lastPageToDisplay
+  là
+  hợp
+  lệ
+  {%
+  endcomment
+  %}{%
+  if
+  lastPageToDisplay> data.PageCount %}
+  {% assign firstPageToDisplay = data.PageCount | minus: MAXIMUM_PAGE_NUMBERS_TO_DISPLAY | plus: 1 %}
+  {% assign lastPageToDisplay = data.PageCount %}
+  {% endif %}
+  {% endif %}
+
+  <div class="flex justify-center gap-3 text-neutral-1-600 text-body-2 w-full">
+    {% comment %}
+    First page
+    {% endcomment %}{% comment %}
+    Hiển thị nếu số lượng lớn hơn 1 trang
+    {% endcomment %}
+    {% if firstPageToDisplay > 1 and data.PageCount > 0 %}
+    {% comment %}
+    Hiển thị button
+    {% endcomment %}
+    {% if data.IsFirstPage == false %}
+    {% assign targetPageQuery = PAGE_QUERY_KEY | append: 1 %}
+    {% assign targetQueries = queryString | replace: pageQuery, targetPageQuery %}
+    <a href="{{ path | append: targetQueries }}"
+      class="flex justify-center items-center"> <i
+        class="twi-17-arrow-2-left-fill text-neutral-1-900 text-base leading-none"></i>
+    </a>
+    {% endif %}
+    {% endif %}
+
+    {% comment %}
+    previous
+    {% endcomment %}
+    {%- comment -%}
+    {% if data.IsFirstPage == false %}
+    {% assign targetPageNumber = data.PageNumber | minus: 1 %}
+    {% if data.HasPreviousPage %}
+    {% assign targetPageQuery = PAGE_QUERY_KEY | append: targetPageNumber %}
+    {% assign targetQueries = queryString | replace: pageQuery, targetPageQuery %}
+    <a href="{{ path | append: targetQueries }}"
+      class="flex">
+      <i class="twi-17-arrow-2-right-fill text-neutral-1-900 text-base leading-none rotate-180"></i>
+    </a>
+    {% endif %}
+    {% endif %}
+    {%- endcomment -%}{% comment %}
+    Previous ellipse
+    {% endcomment %}
+    {% if data.HasPreviousPage and firstPageToDisplay > 1 %}
+    <div class="bg-white flex justify-center items-center rounded-full cursor-pointer">
+      <p class="">
+        {{ '&#8230;' | raw }}
+      </p>
+    </div>
+    {% endif %}
+
+    {% comment %}
+    Page numbers
+    {% endcomment %}
+    <div class="flex items-center gap-4">
+      {% for item in (firstPageToDisplay..lastPageToDisplay) %}
+      {% if item == data.PageNumber %}
+
+      <div class="w-8 h-8 flex justify-center items-center text-white bg-primary-1 rounded-full">
+        <p class="">
+          {{ item }}
+        </p>
+      </div>
+      {% else %}
+      <div class="bg-white flex justify-center items-center rounded-full cursor-pointer">
+        {% assign targetPageQuery = PAGE_QUERY_KEY | append: item %}
+        {% assign targetQueries = queryString | replace: pageQuery, targetPageQuery %}
+        {% assign url = path | append: targetQueries %}
+        <a href="{{ url | raw }}"
+          class="flex justify-center items-center">
+          <p class="text-neutral-1-500 text-body-1 font-medium">
+            {{ item }}
+          </p>
+        </a>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+    {% comment %}
+    After ellipse
+    {% endcomment %}{% assign showEllipsis = firstPageToDisplay | plus: pageNumbersToDisplay | minus: 1 %}
+    {% if showEllipsis < data.PageCount
+      %}
+      <div
+      class="bg-white flex justify-center items-center rounded-full cursor-pointer">
+      <p class="text-neutral-1-500 text-body-1 font-medium">
+        {{ '&#8230;' | raw }}
+      </p>
+  </div>
+  {% endif %}
+
+  {% comment %}
+  Next
+  {% endcomment %}
+  {%- comment -%}
+  {% if data.IsLastPage == false %}
+  {% assign targetPageNumber = data.PageNumber | plus: 1 %}
+  {% if data.HasNextPage %}
+  {% assign targetPageQuery = PAGE_QUERY_KEY | append: targetPageNumber %}
+  {% assign targetQueries = queryString | replace: pageQuery, targetPageQuery %}
+  <a href="{{ path | append: targetQueries }}"
+    class="flex">
+    <i class="twi-17-arrow-2-right-fill text-neutral-1-900 text-base leading-none"></i>
+  </a>
+  {% endif %}
+  {% endif %}
+  {%- endcomment -%}{% comment %}
+  Last
+  {% endcomment %}
+  {% if lastPageToDisplay < data.PageCount
+    %}
+    {%
+    assign
+    lastPageNumber=data.PageCount
+    %}
+    {%
+    if
+    data.IsLastPage==false
+    %}
+    {%
+    assign
+    targetPageQuery=PAGE_QUERY_KEY
+    |
+    append:
+    lastPageNumber
+    %}
+    {%
+    assign
+    targetQueries=queryString
+    |
+    replace:
+    pageQuery,
+    targetPageQuery
+    %}
+    <a
+    href="{{ path | append: targetQueries }}"
+    class="flex justify-center items-center"> <i
+      class="twi-17-arrow-2-right-fill text-neutral-1-900 text-base leading-none"></i>
+    </a>
+    {% endif %}
+    {% endif %}
+    </div>

@@ -1,0 +1,85 @@
+#variant-list, #cart-product-lst, #variant-list-detail {
+  .group-radio{
+      input[type="checkbox"] {
+        appearance: none;
+        display: none;
+      }
+    
+      input[type="checkbox"]:checked + label {
+        @apply transition-all duration-300 flex gap-2 items-center border border-primary-1 text-primary-1 h-fit;
+    
+        &::after {
+            font-family: 'TwebIcons-17';
+            content: '\e914';
+            @apply text-2xl leading-none text-primary-1
+        }
+      }
+    
+      input[type="checkbox"] + label {
+        @apply border border-neutral-2-200 overflow-hidden px-5 py-2 rounded-full cursor-pointer h-fit;
+      }
+
+      input[type="checkbox"]:disabled + label {
+        @apply border-neutral-2-50 transition-all duration-300 cursor-default text-neutral-1-400 h-fit;
+      }
+  }
+    
+}
+
+.tooltip {
+    position: relative;
+    overflow: visible;
+    &-text, &-post{
+      &::before, &::after{
+        @apply opacity-0 pointer-events-none cursor-default absolute bottom-full z-10 transition-opacity duration-200 left-1/2 -translate-x-1/2;
+      }
+      &::after{
+        content: '';
+        border: 4px solid transparent;
+        border-top-color: black;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &::before{
+        content: attr(data-tooltip);
+        @apply text-white bg-black rounded text-body-2 p-2 text-center min-w-[200px] font-normal;
+      }
+      &:hover::before, &:hover::after{
+        @apply lg:opacity-100 lg:pointer-events-auto;
+      }
+    }
+    &-text{
+      &::before{
+        @apply max-w-[288px] w-full;
+      }
+    }
+    &-post{
+      @apply whitespace-normal;
+      &-large{
+        &::before{
+          @apply w-full max-w-[444px];
+        }
+      }
+      &-medium{
+        &::before{
+          @apply w-full max-w-[360px];
+        }
+      }
+      &-small{
+        &::before{
+          @apply w-full max-w-[200px];
+        }
+      }
+    
+  }
+}
+
+.ck-content{
+  padding: 0px;
+  ul{
+    list-style-type: disc;
+  }
+}
+  

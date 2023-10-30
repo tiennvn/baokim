@@ -1,0 +1,26 @@
+{% if Request.Route.area == "TWeb.Topics" %}
+  {% form action: 'Search', controller: 'TopicV2', route_area: "TWeb.Topics", method: 'get', class: "flex h-fit w-full" %}
+    <input
+      type="text"
+      name="key"
+      placeholder="Nhập từ khóa tìm kiếm"
+      value="{{ Request.Query.key[0] | raw }}"
+      class="w-full px-6 py-4 border border-primary-1 focus:outline-0 text-body-2 placeholder:text-neutral-1-300 text-neutral-1-700 rounded-l-lg">
+    <button type="submit" class="flex items-center text-white bg-primary-1 p-3.5 rounded-r-lg btn-full">
+      <i class="twi-17-search-line-line text-2xl leading-none"></i>
+    </button>
+  {% endform %}
+
+{% else %}
+  {% form action: 'Search', controller: 'Shop', method: 'get', route_area: 'TWeb.Products', class: "flex h-fit w-full lg:w-1/3" %}
+    <input
+      type="text"
+      name="key"
+      placeholder="Tìm kiếm sản phẩm"
+      value="{{ Request.Query.key[0] | raw }}"
+      class="w-full px-6 py-4 border border-primary-1 focus:outline-0 text-body-2 placeholder:text-neutral-1-300 text-neutral-1-700 rounded-l-lg">
+    <button type="submit" class="flex items-center text-white bg-primary-1 p-3.5 rounded-r-lg btn-full">
+      <i class="twi-17-search-line-line text-2xl leading-none"></i>
+    </button>
+  {% endform %}
+{% endif %}

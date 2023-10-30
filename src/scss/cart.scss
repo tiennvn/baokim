@@ -1,0 +1,20 @@
+.list-address {
+    @apply  w-full h-fit border-b border-neutral-2-200;
+    select {
+      @apply cursor-pointer focus:outline-0 p-4 text-neutral-1-900 text-body-2 w-full bg-white;
+      option{
+        @apply text-neutral-1-600;
+      }
+    }
+}
+
+.input-quantity::-webkit-inner-spin-button,
+.input-quantity::-webkit-outer-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="checkbox"]{
+    cursor: pointer;
+}

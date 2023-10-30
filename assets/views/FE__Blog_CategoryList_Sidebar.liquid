@@ -1,0 +1,27 @@
+{% assign categoryList = Model.Data %}
+
+<div class="border border-primary-1 rounded-tl-[40px] rounded-br-[40px] overflow-hidden">
+  <div class="flex flex-col gap-[30px] text-primary-2 p-6 pb-5">
+    <h4 class="text-secondary-1 font-semibold text-heading-4  ">Danh mục bài viết</h4>
+    {% for category in categoryList.Items limit: 4 %}
+      {% assign postListCategory = "Newest" | get_posts: categoryId: category.Id, nested: true %}
+      <div class="flex items-center justify-between">
+        <p class="flex text-lg font-semibold line-clamp-1 max-w-[50%] md:max-w-[70%] xl:max-w-[80%]">
+          <a href="{{ category.NiceUrl | prepend: "~/" | absolute_url }}">
+            {{ category.Title | raw }}
+            </a>
+          </p>
+          <span class="w-12 h-[22px] bg-primary-4 flex justify-center items-center rounded-full text-body-2 leading-5">{{ postListCategory.TotalResult }}</span>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="w-full flex items-end justify-end">
+      {% a 
+       controller: "TopicV2",
+       route_action: "Suggest",
+       route_area: "TWeb.Topics",
+       class: "py-6 bg-primary-1 w-fit px-11 rounded-tl-[40px] flex items-center justify-center btn-full" %}
+      <i class="twi-17-arrow-narrow-right-fill text-white text-xl leading-none"></i>
+    {% enda %}
+  </button>
+</div>

@@ -1,0 +1,137 @@
+{
+    "name": "",
+    "displayName": "",
+    "description": "",
+    "author": "",
+    "website": "",
+    "version": "",
+    "issetuprecipe": false,
+    "categories": [],
+    "tags": [],
+    "steps": [
+        {
+			"name": "navigation",
+			"data": [
+				{
+					"name": "Menu web 17",
+					"navItemList": [
+						{
+							"id": "00000000-0000-0000-0000-000000000000",
+							"label": null,
+							"title": "Trang chủ",
+							"icon": "",
+							"navigation_Id": "00000000-0000-0000-0000-000000000000",
+							"navigation_Name": null,
+							"parentItem_Id": null,
+							"parentItem_Title": null,
+							"url": "",
+							"index": 1,
+							"isMega": false,
+							"childItems": [],
+							"level": 0
+						},
+						{
+							"id": "00000000-0000-0000-0000-000000000000",
+							"label": null,
+							"title": "Giới thiệu",
+							"icon": "",
+							"navigation_Id": "00000000-0000-0000-0000-000000000000",
+							"navigation_Name": null,
+							"parentItem_Id": null,
+							"parentItem_Title": null,
+							"url": "introduction",
+							"index": 2,
+							"isMega": false,
+							"childItems": [],
+							"level": 0
+						},
+						{
+							"id": "00000000-0000-0000-0000-000000000000",
+							"label": null,
+							"title": "Liên hệ",
+							"icon": "",
+							"navigation_Id": "00000000-0000-0000-0000-000000000000",
+							"navigation_Name": null,
+							"parentItem_Id": null,
+							"parentItem_Title": null,
+							"url": "contact-us",
+							"index": 6,
+							"isMega": false,
+							"childItems": [],
+							"level": 0
+						},
+						{
+							"id": "00000000-0000-0000-0000-000000000000",
+							"label": null,
+							"title": "Bài viết",
+							"icon": "",
+							"navigation_Id": "00000000-0000-0000-0000-000000000000",
+							"navigation_Name": null,
+							"parentItem_Id": null,
+							"parentItem_Title": null,
+							"url": "blog",
+							"index": 4,
+							"isMega": false,
+							"childItems": [],
+							"level": 0
+						},
+						{
+							"id": "00000000-0000-0000-0000-000000000000",
+							"label": null,
+							"title": "Đơn hàng",
+							"icon": "",
+							"navigation_Id": "00000000-0000-0000-0000-000000000000",
+							"navigation_Name": null,
+							"parentItem_Id": null,
+							"parentItem_Title": null,
+							"url": "shop/order/tracking",
+							"index": 7,
+							"isMega": false,
+							"childItems": [],
+							"level": 0
+						}
+					],
+					"settings": {
+						"isGlobal": true,
+						"navigationType": 2,
+						"logo": {
+							"title": null,
+							"url": "",
+							"isShowLogo": true,
+							"isDefault": true,
+							"settings": null
+						},
+						"userProfile": {
+							"icon": "",
+							"isShowUserProfile": true,
+							"settings": null
+						},
+						"searchBarSettings": {
+							"icon": "",
+							"isShowSearch": true
+						},
+						"description": null,
+						"title": null,
+						"shortTitle": null,
+						"cart": {
+							"title": null,
+							"icon": "",
+							"isShowCart": true,
+							"isAlwaysDisplay": true,
+							"htmlClass": null,
+							"htmlStyle": null
+						},
+						"interactionType": "Hover",
+						"isShowIcon": false,
+						"isAlwaysDisplay": true,
+						"htmlClass": null,
+						"htmlStyle": null
+					},
+					"dateUpdated": null,
+					"dateCreated": "2022-09-22T15:46:27.0469083+07:00",
+					"level": 0
+				}
+			]
+		}
+    ]
+  }

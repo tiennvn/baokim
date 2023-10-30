@@ -1,0 +1,46 @@
+{% assign postCategory = Model.Data %}
+
+{% for post in postCategory.Items %}
+  {% assign displayDate = post.DateUpdated | post: post.DatePublished | date: "%d Thg %m, %Y" %}
+  <div class="flex flex-col gap-1 md:flex-row md:gap-8">
+    <div class="w-full md:w-[37%] xl:w-[35%]">
+        <div class="relative w-full pt-[51.91%] md:pt-[65.51%] lg:pt-[100%] ">
+            <a href="{{ post.NiceUrl | prepend: "~/" | absolute_url }}">
+                <img class="image-custom object-cover rounded-tl-[40px] rounded-br-[40px]"
+                    src="{{ post.ImageFullUrl }}" alt="{{ post.Title | raw }}">
+            </a>
+        </div>
+    </div>
+
+    <div class="flex flex-col w-full justify-between py-2.5 gap-4 md:w-[63%] xl:w-[65%]">
+        <div class="flex flex-col w-full">
+            <div class="flex items-center text-body-2 font-medium text-primary-2 gap-2 uppercase">
+                <div class="tooltip">
+                    <div data-tooltip="{{ post.Category.Title | raw }}" class="tooltip-post tooltip-post-large">
+                        <a href="{{ post.Category.NiceUrl | prepend: "~/" | absolute_url }}" class="line-clamp-1" >{{ post.Category.Title | raw }}</a>
+                    </div>
+                </div>
+                <p class="flex gap-2 items-center whitespace-nowrap">
+                    <span class="w-1 h-1 bg-primary-2 rounded-full"></span>
+                    <span>{{ displayDate | raw }}</span>
+                </p>
+            </div>
+            <div class="flex">
+                <p class="tooltip min-h-[56px] md:min-h-[80px] text-neutral-1-900 font-semibold text-header-1 lg:text-heading-3">
+                    <a data-tooltip="{{ post.Title | raw }}" href="{{ post.NiceUrl | prepend: "~/" | absolute_url }}" class="line-clamp-2 tooltip-post tooltip-post-large ">
+                      {{ post.Title | raw }} 
+                    </a>
+                </p>
+            </div>
+            <p class="text-body-1 text-neutral-1-700 line-clamp-2 pt-2.5 min-h-[48px] lg:pt-3 lg:line-clamp-3 lg:min-h-[72px]">
+              {{ post.Description | raw }}
+            </p>
+        </div>
+        <button class="w-fit py-2 px-6 border border-primary-1 rounded-full bg-white btn-line">
+            <a href="{{ post.NiceUrl | prepend: "~/" | absolute_url }}" class="text-primary-1 font-medium text-body-1">
+                Đọc thêm
+            </a>
+        </button>
+    </div>
+  </div>
+{% endfor %}

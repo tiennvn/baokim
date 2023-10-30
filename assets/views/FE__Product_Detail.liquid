@@ -1,0 +1,1075 @@
+{% assign product = Model.Data %}
+{% assign culture = "vi-VN" %}
+{% assign currencyFormat = "{0:c}" %}
+
+{% if product.TotalQuantity > 0 %}
+  {% assign variantDefault = product.VariantCombinations | where: "IsDefault", "true" | first %}
+{% else %}
+  {% assign variantDefault = product.VariantCombinations | first %}
+{% endif %}
+
+{% assign originalPriceDefault = variantDefault.OriginalPrice | currency: format: currencyFormat, culture: culture %}
+{% assign displayPriceDefault = variantDefault.DisplayPrice | currency: format: currencyFormat, culture: culture %}
+
+{% assign minOriginalPrice = product.MinOriginalPrice | currency: format: currencyFormat, culture: culture %}
+{% assign maxOriginalPrice = product.MaxOriginalPrice | currency: format: currencyFormat, culture: culture %}
+{% assign minDisplayPrice = product.MinDisplayPrice | currency: format: currencyFormat, culture: culture %}
+{% assign maxDisplayPrice = product.MaxDisplayPrice | currency: format: currencyFormat, culture: culture %}
+
+<div id="product-detail" class="flex flex-col pt-12 px-6 md:pt-20 lg:px-2 lg:pt-[120px] 2xl:px-0">
+  <div class="flex flex-col gap-5 md:flex-row xl:gap-16">
+    <div class="w-full md:relative md:w-1/2 xl:w-[35%] animate-left">
+      <div class="flex flex-col w-full h-fit gap-8">
+        <div class="swiper swiperPreProductDetail w-full max-w-full py-4 px-2 md:py-6 md:px-3 border border-primary-1 rounded-tl-[40px] rounded-br-[40px] lg:px-0">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="flex justify-center items-center w-full">
+                <div class="relative w-full pt-[100%]">
+                  <img
+                    alt="{{ product.Name | raw }}"
+                    src="{{ product.AvatarFullUrl }}"
+                    class="image-custom object-contain"
+                    data-id="{{ product.Id }}"
+                    data-fancybox="gallery">
+                </div>
+              </div>
+            </div>
+            {% if product.Images.size > 0 %}
+              {% for image in product.Images %}
+                <div class="swiper-slide">
+                  <div class="flex justify-center items-center w-full">
+                    <div class="relative w-full pt-[100%]">
+                      <img
+                        alt="{{ product.Name | raw }}"
+                        src="{{ image.AvatarFullUrl }}"
+                        class="image-custom object-contain"
+                        data-id="{{ product.Id }}"
+                        data-fancybox="gallery">
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if product.TotalCombinations > 1 %}
+              {% for variant in product.VariantCombinations %}
+                {% if variant.FullUrlImage != null %}
+                  <div class="swiper-slide">
+                    <div class="flex justify-center items-center w-full">
+                      <div class="relative w-full pt-[100%]">
+                        <img
+                          alt="{{ product.Name | raw }}"
+                          src="{{ variant.FullUrlImage }}"
+                          class="image-custom object-contain"
+                          data-id="{{ variant.Id }}"
+                          data-fancybox="gallery">
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="px-[90px] md:px-[100px] xl:px-[76px] w-full relative">
+          <div class="swiper-button-prev swiper-button-prev_prodetail w-12 h-12 bg-neutral-50 rounded-full left-0"></div>
+          <div thumbsSlider="" class="swiper swiperProductDetail flex items-center w-full max-w-full">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="relative w-full pt-[125%] md:pt-[150%]">
+                  <img
+                    alt="{{ product.Name | raw }}"
+                    src="{{ product.AvatarFullUrl }}"
+                    class="image-custom object-contain"
+                    data-id="{{ product.Id }}">
+                </div>
+              </div>
+
+              {% if product.Images.size > 0 %}
+                {% for image in product.Images %}
+                  <div class="swiper-slide">
+                    <div class="relative w-full pt-[125%] md:pt-[150%]">
+                      <img
+                        alt="{{ product.Name | raw }}"
+                        src="{{ image.AvatarFullUrl }}"
+                        class="image-custom object-contain"
+                        data-id="{{ product.Id }}">
+                    </div>
+                  </div>
+                {% endfor %}
+              {% endif %}
+              {% if product.TotalCombinations > 1 %}
+                {% for variant in product.VariantCombinations %}
+                  {% if variant.FullUrlImage != null %}
+                    <div class="swiper-slide">
+                      <div class="relative w-full pt-[125%] md:pt-[150%]">
+                        <img
+                          alt="{{ product.Name | raw }}"
+                          src="{{ variant.FullUrlImage }}"
+                          class="image-custom object-contain"
+                          data-id="{{ variant.Id }}">
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="swiper-button-next swiper-button-next_prodetail w-12 h-12 bg-neutral-50 rounded-full right-0"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:w-1/2 xl:w-[65%] animate-right">
+      <div class="flex flex-col gap-2 pb-6 border-b border-neutral-2-200">
+        <h1 class="text-heading-4 text-secondary-1 font-semibold">{{ product.Name | raw }}</h1>
+        {% if product.ShortDescription != null %}
+          <p class="text-neutral-1-900 text-body-1">
+            {{ product.ShortDescription | raw }}
+          </p>
+        {% endif %}
+        <div class="flex items-center gap-2 px-4 py-3 bg-primary-4 rounded-lg text-heading-4 font-semibold">
+          {% if product.IsPriceHidden == false %}
+            <div id="show-price">
+              {% if product.SellPrice > 0 %}
+                <p class="text-neutral-1-600 text-header-1 line-through">
+                  {{ originalPriceDefault | raw }}
+                </p>
+                <p class="text-error-400">
+                  {{ displayPriceDefault | raw }}
+                </p>
+              {% else %}
+                <p class="text-error-400">
+                  {{ originalPriceDefault | raw }}
+                </p>
+              {% endif %}
+            </div>
+          {% else %}
+            <p class="text-info-400">
+              Liên hệ
+            </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-7 pt-6">
+        {% if product.Options.size > 0 %}
+          <div id="variant-list-detail" class="flex flex-col gap-7">
+            {% for option in product.Options %}
+              <div
+                role="group"
+                aria-labelledby="{{ option.Name | raw }}"
+                class="w-full flex gap-2.5 group-radio">
+                <p id="{{ option.Name | raw }}" class="text-body-2 text-neutral-1-700 w-1/3 max-w-[109px]">{{ option.Name | raw }}:</p>
+                <div class="flex flex-wrap gap-2.5 col-span-4 text-body-1 text-neutral-1-900">
+                  {% for item in option.Values %}
+                    <input
+                      type="checkbox"
+                      name="{{ option.Name | raw }}"
+                      id="{{ item.Id | prepend: 'detail_' | raw }}"
+                      value="{{ item.Name | raw }}"
+                      data-id="{{ item.Id }}"
+                      class="radio-hidden">
+                    <label for="{{ item.Id | prepend: 'detail_' | raw }}">{{ item.Name | raw }}</label>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="w-full flex flex-col gap-2 lg:flex-row lg:items-center">
+          <div class="flex gap-2.5 items-center">
+            <p class="text-body-2 text-neutral-1-700 whitespace-nowrap w-1/3 max-w-[109px] py-2">Số lượng:</p>
+            <div class="flex border border-neutral-2-200 rounded-full w-fit">
+              <button class="minus is-form flex text-neutral-1-500 p-2 rounded-l-full focus:bg-neutral-2-200 focus-within:text-primary-1">
+                <i class="twi-17-minus-fill text-2xl leading-none"></i>
+              </button>
+              {% if variantDefault.Quantity > 0 %}
+                {% assign dataQuantity = variantDefault.Quantity %}
+              {% else %}
+                {% if product.IsAblePreorder == true %}
+                  {% assign dataQuantity = 9999 %}
+                {% else %}
+                  {% assign dataQuantity = 1 %}
+                {% endif %}
+              {% endif %}
+              <input
+                class="input-qty py-2 border-x border-neutral-200 text-center text-body-2 text-neutral-1-900 appearance-none focus:outline-none"
+                max="9999"
+                min="1"
+                type="number"
+                value="1"
+                data-quantity="{{ dataQuantity | raw }}"
+                data-isAblePreorder="{{ product.IsAblePreorder }}">
+              <button class="plus is-form flex text-neutral-1-500 p-2 rounded-r-full focus:bg-neutral-2-200 focus-within:text-primary-1">
+                <i class="twi-17-plus-fill text-2xl leading-none"></i>
+              </button>
+            </div>
+          </div>
+          <p id="show-quantity" class="text-neutral-1-700 font-medium text-body-2">Còn {{ variantDefault.Quantity | raw }} sản phẩm</p>
+        </div>
+      </div>
+
+      {% if product.IsAblePreorder == false %}
+        {% if product.TotalQuantity == 0 or variantDefault.Quantity == 0 %}
+          <div
+            id="sold-out"
+            data-isAblePreorder="{{ product.IsAblePreorder }}"
+            data-totalQuantity="{{ product.TotalQuantity }}"
+            data-isPriceHidden="{{ product.IsPriceHidden }}"
+            class="flex">
+            <p class="text-body-1 font-medium text-error-400 pt-4">Hết hàng</p>
+          </div>
+          <div
+            id="btn-lst-product-detail"
+            class="hidden flex-wrap gap-4 text-body-1 font-medium pt-5 md:flex-nowrap xl:pt-16"
+            data-item="{{ product.IsPriceHidden }}"
+            data-option="{{ product.Options.size }}">
+            <div class="btn-add-product-detail react-btn-product-detail"></div>
+            {% a controller: "Cart", route_action: "Index", route_area: "TWeb.Products", id: 'link-cart' %}
+              <div data-href="#" class="btn-buy-product-detail react-btn-product-detail"></div>
+            {% enda %}
+          </div>
+        {% else %}
+          <div
+            id="sold-out"
+            data-isAblePreorder="{{ product.IsAblePreorder }}"
+            data-totalQuantity="{{ product.TotalQuantity }}"
+            data-isPriceHidden="{{ product.IsPriceHidden }}"
+            class="hidden"></div>
+
+          <div
+            id="btn-lst-product-detail"
+            class="flex flex-wrap gap-4 text-body-1 font-medium pt-5 md:flex-nowrap xl:pt-16"
+            data-item="{{ product.IsPriceHidden }}"
+            data-option="{{ product.Options.size }}">
+            <div class="btn-add-product-detail react-btn-product-detail"></div>
+            {% a controller: "Cart", route_action: "Index", route_area: "TWeb.Products", id: 'link-cart' %}
+              <div data-href="#" class="btn-buy-product-detail react-btn-product-detail"></div>
+            {% enda %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div
+          id="sold-out"
+          data-isAblePreorder="{{ product.IsAblePreorder }}"
+          data-totalQuantity="{{ product.TotalQuantity }}"
+          data-isPriceHidden="{{ product.IsPriceHidden }}"
+          class="hidden"></div>
+
+        <div
+          id="btn-lst-product-detail"
+          class="flex flex-wrap gap-4 text-body-1 font-medium pt-5 xl:pt-16"
+          data-item="{{ product.IsPriceHidden }}"
+          data-option="{{ product.Options.size }}">
+          <div class="btn-add-product-detail react-btn-product-detail"></div>
+          {% a controller: "Cart", route_action: "Index", route_area: "TWeb.Products", id: 'link-cart' %}
+            <div data-href="#" class="btn-buy-product-detail react-btn-product-detail"></div>
+          {% enda %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+{% scriptblock depends_on: "jQuery", at: "Foot" %}
+  var swiper = new Swiper(".swiperProductDetail", {
+  spaceBetween: 24,
+  		slidesPerView: 2,
+  		watchSlidesProgress: true,
+  		breakpoints: {
+  				1024: {
+  						slidesPerView: 3,
+  				}
+  		},
+  	});
+  	var swiper2 = new Swiper(".swiperPreProductDetail", {
+  		spaceBetween: 10,
+  		navigation: {
+  				nextEl: ".swiper-button-next_prodetail",
+  				prevEl: ".swiper-button-prev_prodetail",
+  		},
+  		thumbs: {
+  				swiper: swiper,
+  		},
+  	});
+  
+  	Fancybox.bind("[data-fancybox]", {
+  			// Your custom options
+  			Thumbs: {
+  					type: "classic",
+  			},
+  	});{% endscriptblock %}
+
+{% scriptblock depends_on: "jQuery", at: "Foot" %}
+  var inputQty = document.getElementsByClassName("input-qty");
+  var messageQuantity = document.getElementById("message-quantity");
+  																															
+  	if (inputQty) {
+  		$(inputQty).each( function() {
+  			var $this = $(this)
+  			qty = $this.parent().find('.is-form'),
+  			min = Number($this.attr('min')),
+  			max = Number($this.attr('max'))
+  			
+  			$(document).ready( function(){
+  				$(".input-qty",this).on('change', function(){
+  					var valueInput = Number(this.value)
+  					quantityItem = Number($(this).attr('data-quantity'));
+  					limitQuantity = quantityItem
+  					if(quantityItem > max) limitQuantity = max
+  					$this.attr('value', this.value);
+  					if (valueInput >= limitQuantity) {
+  						valueInput = limitQuantity
+  						$(".is-form.minus").prop('disabled', false)
+  						$(".is-form.plus").prop('disabled', true)
+  					} 
+  					else if(valueInput <= min ) {
+  						valueInput = min
+  						$(".is-form.minus").prop('disabled', true)
+  						$(".is-form.plus").prop('disabled', false)
+  					}
+  					else{
+  						$(".is-form.minus").prop('disabled', false)
+  						$(".is-form.plus").prop('disabled', false)
+  					}
+  				});
+  				$(qty).on('click', function() {
+  					var valueInput = Number($(".input-qty").val())
+  					quantityItem = Number($(".input-qty").attr('data-quantity'));
+  					limitQuantity = quantityItem
+  					if(quantityItem > max ) limitQuantity = max
+  					if ($(this).hasClass('minus')) {
+  						if (valueInput > min) {
+  								valueInput -= 1;
+  						}
+  					} 
+  					else if ($(this).hasClass('plus')) {
+  						var x = Number($(".input-qty").val()) + 1;
+  						if (x <= limitQuantity) {
+  								valueInput += 1;
+  						}
+  					}
+  					if(valueInput >= limitQuantity){
+  						$(".is-form.plus").prop('disabled', true)
+  					}
+  					else {
+  						$(".is-form.plus").prop('disabled', false)
+  					}
+  
+  					if(valueInput <= min){
+  						$(".is-form.minus").prop('disabled', true)
+  					}
+  					else 
+  						$(".is-form.minus").prop('disabled', false)
+  
+  					$(".input-qty").attr('value', valueInput).val(valueInput);
+  				})
+  				$(".input-qty",this).on('input', function(){
+  					quantityItem = Number($this.attr('data-quantity'));
+  					limitQuantity = quantityItem
+  					if(quantityItem > max) limitQuantity = max
+  					var valueInput = Number(this.value)
+  					if(valueInput >= limitQuantity){
+  						$this.attr('value', quantityItem).val(limitQuantity)
+  						$(".is-form.plus").prop('disabled', true)
+  						$(".is-form.minus").prop('disabled', false)
+  					}
+  					else if (valueInput <= min){
+  						$this.attr('value', min).val(min)
+  						$(".is-form.plus").prop('disabled', false)
+  						$(".is-form.minus").prop('disabled', true)
+  					}
+  					else{
+  						$(".is-form.minus").prop('disabled', false)
+  						$(".is-form.plus").prop('disabled', false)
+  					}
+  					
+  				})
+  				$(".input-qty",this).on('input', function(){
+  					$(this).val(function(index, value) {
+  						return value
+  						.replace(/\D/g, "")
+  					})
+  				})
+  				$(".input-qty",this).on('click', function(){
+  						$(this).select();
+  				})
+  			});
+  		})
+  	}{% endscriptblock %}
+{% scriptblock depends_on: "jQuery", at: "Foot" %}
+  var variantCombinations = '{{ product.VariantCombinations | json | raw }}';
+  var productOptions = '{{ product.Options | json | raw }}';
+  var listOptions = JSON.parse(productOptions); // danh sách thuộc tính
+  	var listVariant = JSON.parse(variantCombinations); // danh sách biến thể
+  	const imageLst = Array.from(document.querySelectorAll("#product-detail .swiperPreProductDetail .swiper-slide .image-custom"));
+  	const inputAllLst = Array.from(document.querySelectorAll("#variant-list-detail .group-radio .radio-hidden"));
+  	const groupInputLst = Array.from(document.querySelectorAll("#variant-list-detail .group-radio"));
+  
+  // Xử lý việc chọn biến thể 
+  if (listVariant[0].VariantValues.length > 0) {
+  	var dataChosen = {};
+  
+  	handleVariantDefault();
+  
+  	if(groupInputLst.length > 0){
+  		groupInputLst.forEach(groupInput => {
+  			const inputLst = Array.from(groupInput.querySelectorAll(".radio-hidden"));
+  
+  			inputLst.forEach(input => {
+  				input.addEventListener('click', (e) => {
+  					// chỉ cho chọn 1 giá trị cho 1 thuộc tính
+  					if(e.target.checked == true){
+  						inputLst.forEach(item => {
+  							if(item.getAttribute("data-id") == e.target.getAttribute("data-id")) item.checked = true;
+  							else item.checked = false
+  						})
+  					}
+  					else{
+  						inputLst.forEach(item => {item.checked = false})
+  					}
+  
+  					// danh sách input đã chọn
+  					const inputCheckedLst = Array.from(document.querySelectorAll("#variant-list-detail .group-radio .radio-hidden:checked"));
+  
+  					// danh sách giá trị khác name thuộc tính với giá trị đã chọn 
+  					let inputOtherName = inputAllLst.filter(inputItem => inputItem.name != e.target.name)
+  
+  					// xử lý giá trị thuộc tính biến thể
+  					handleVariantValue(e.target);
+  
+  					// button trong chi tiết sản phẩm
+  					var btnLstProductDetail = [];
+  					if(document.querySelector("#btn-lst-product-detail")){
+  						btnLstProductDetail = Array.from(document.querySelectorAll("#btn-lst-product-detail .react-btn-product-detail button"));
+  					}
+  					// chọn đầy đủ thuộc tính của biến thể
+  					if(inputCheckedLst.length == groupInputLst.length ) {
+  						activeImage(inputCheckedLst);
+  						btnLstProductDetail.forEach(btnProductDetail => {btnProductDetail.disabled = false})
+  					}
+  					// chưa chọn đầy đủ thuộc tính
+  					else{
+  						resetVariant();
+  						btnLstProductDetail.forEach(btnProductDetail => {
+  															btnProductDetail.disabled = true;
+  													})
+  					}
+  				})
+  			})
+  		})
+  	}
+  }
+  else {
+  	changeVariant(listVariant[0]);
+  }
+  
+  function changeVariant(variantDetail) {
+  	// hiển thị giá biến thể
+  	if (document.querySelector("#show-price")) {
+  		if (variantDetail.SellPrice == 0) {
+  			document.querySelector("#show-price").innerHTML = `<p class="text-error-400">
+    ${
+    Number(variantDetail.DisplayPrice).toLocaleString('vi-VN', {
+    								style: 'currency',
+    								currency: 'VND'
+    						})
+    				}</p>
+  `
+  }
+  	else {
+  		document.querySelector("#show-price").innerHTML = `<p class="text-neutral-1-600 text-header-1 line-through">
+    ${
+    Number(variantDetail.OriginalPrice).toLocaleString('vi-VN', {
+    							style: 'currency',
+    							currency: 'VND'
+    					})
+    			}</p>
+  <p class="text-error-400">
+    ${
+    Number(variantDetail.DisplayPrice).toLocaleString('vi-VN', {
+    					style: 'currency',
+    					currency: 'VND'
+    					})
+    				}</p>`
+  }
+  	}
+  
+  	// thêm biến thể vào giỏ hàng
+  	if (document.querySelector("#btn-lst-product-detail")) {
+  		let btnLstProductDetail = Array.from(document.querySelectorAll("#btn-lst-product-detail .react-btn-product-detail button"))
+  		btnLstProductDetail.forEach(btnProductDetail => {
+  			const attId = document.createAttribute("data-id");
+  			attId.value = `${variantDetail.Id}`;
+  			btnProductDetail.setAttributeNode(attId);
+  		})
+  	}
+  
+  	// thêm số lượng biến thể còn lại vào input
+  	let inputQty = document.querySelector(".input-qty");
+  	let dataQuantity;
+  	if(variantDetail.Quantity > 0){
+  		dataQuantity = variantDetail.Quantity
+  	}
+  	else {
+  		if(inputQty.getAttribute("data-isAblePreorder")) dataQuantity = 9999;
+  		else dataQuantity = 0;
+  	}
+  	inputQty.setAttribute("data-quantity", dataQuantity);
+  	if(inputQty.value >= dataQuantity) {
+  		if(dataQuantity > 0){
+  			inputQty.setAttribute("value", dataQuantity);
+  			inputQty.value= dataQuantity;
+  		}
+  		else {
+  			inputQty.setAttribute("value", "1")
+  			inputQty.value= 1;
+  		} 
+  		document.querySelector(".is-form.plus").disabled = true
+  	}
+  	else{
+  			document.querySelector(".is-form.plus").disabled = false
+  	}
+  
+  // Hiển thị số lượng sản phẩm của biến thể được chọn
+  showQuantity(variantDetail.Quantity)
+  
+  // xử lý khi biến thể hết hàng
+  handleButtonAddToCart(variantDetail.Quantity);
+  }
+  
+  
+  function handleVariantValue(eventTarget) {
+  // danh sách input đã chọn 
+  const inputCheckedLst = Array.from(document.querySelectorAll("#variant-list-detail .group-radio .radio-hidden:checked"));
+  
+  if(inputCheckedLst.length == groupInputLst.length){
+  let inputs = [];
+  if(inputCheckedLst.length > 2){
+  inputs = inputCheckedLst.filter(input => input.name != eventTarget.name)
+  }
+  else{
+  inputs = inputCheckedLst;
+  }
+  
+  inputs.forEach(input => {
+  var props = [];
+  if(inputCheckedLst.length > 2){
+  	for (let i = 0; i < inputCheckedLst.length - 1; i++) {
+  		if( i == inputCheckedLst.length - 2 ) props.push(eventTarget.getAttribute("data-id"))
+  		else props.push(input.getAttribute("data-id")) // id thuộc tính đã chọn
+  	};
+  }
+  else{
+  	props.push(input.getAttribute("data-id")) // id thuộc tính đã chọn
+  }
+  
+  // danh sách group input khác với group input đã chọn 
+  var groupInputOtherLst = [];
+  groupInputLst.forEach(groupInput => {
+  	if (groupInput.getAttribute("aria-labelledby") != input.name && groupInput.getAttribute("aria-labelledby") != eventTarget.name) 
+  		groupInputOtherLst.push(groupInput);
+  })
+  
+  // list biến thể chứa các thuộc tính đã chọn => true,
+  const itemFilterLst = filterVariant(props);
+  
+  groupInputOtherLst.forEach(groupInputOther => {
+  	const inputOtherLst = Array.from(groupInputOther.querySelectorAll(".radio-hidden"));
+  
+  	// reset giá trị của attr disabled
+  	resetDisableAttr(inputOtherLst);
+  
+  	// danh sách id của các giá trị thuộc tính còn lại có trong biến thể không bị ẩn 
+  	let idValueLst = filterIdValue(itemFilterLst, props);
+  
+  	// xử lý disable các giá trị thuộc tính biến thể bị ẩn
+  	handleDisabled(idValueLst, inputOtherLst)
+  })
+  })
+  
+  }
+  else{
+  if(eventTarget.checked == true){
+  // danh sách group input khác với group input đã chọn 
+  var groupInputOtherLst = [];
+  groupInputLst.forEach(groupInput => {
+  	let flag = true;
+  	for(let i=0; i < inputCheckedLst.length; i++){
+  		if (groupInput.getAttribute("aria-labelledby") == inputCheckedLst[i].name) flag = false
+  	}
+  	if (flag)
+  		groupInputOtherLst.push(groupInput)
+  })
+  
+  // danh sách id giá trị thuộc tính đã chọn
+  var props = inputCheckedLst.map(input => input.getAttribute("data-id"))
+  
+  
+  // list biến thể chứa các thuộc tính đã chọn => true, 
+  const itemFilterLst = filterVariant(props);
+  
+  groupInputOtherLst.forEach(groupInputOther => {
+  	const inputOtherLst = Array.from(groupInputOther.querySelectorAll(".radio-hidden"));
+  
+  	// reset giá trị của attr disabled
+  	resetDisableAttr(inputOtherLst);
+  
+  	// danh sách id của các giá trị thuộc tính còn lại có trong biến thể không bị ẩn 
+  	let idValueLst = filterIdValue(itemFilterLst, props);
+  
+  	// xử lý disable các giá trị thuộc tính biến thể bị ẩn
+  	handleDisabled(idValueLst, inputOtherLst)
+  })
+  }
+  else{
+  if(inputCheckedLst.length == 0){
+  	inputAllLst.forEach(item => {
+  		item.checked = false
+  		if(listOptions.length > 1) {
+  			item.disabled = false
+  		}
+  	})
+  }
+  else{
+  	// danh sách group input khác với group input đã chọn 
+  	var groupInputOtherLst = [];
+  	groupInputLst.forEach(groupInput => {
+  		let flag = true;
+  		for(let i=0; i < inputCheckedLst.length; i++){
+  			if (groupInput.getAttribute("aria-labelledby") == inputCheckedLst[i].name) flag = false
+  		}
+  		if (flag) groupInputOtherLst.push(groupInput)
+  	})
+  
+  	inputCheckedLst.forEach(input => {
+  		inputAllLst.forEach(inputAll => {
+  			if(inputAll.name == input.name) inputAll.disabled = false
+  		})
+  	})
+  
+  	// danh sách id giá trị thuộc tính đã chọn
+  	var props = inputCheckedLst.map(input => input.getAttribute("data-id"))
+  	
+  
+  	// list biến thể chứa các thuộc tính đã chọn => true, 
+  	const itemFilterLst = filterVariant(props);
+  
+  	groupInputOtherLst.forEach(groupInputOther => {
+  		const inputOtherLst = Array.from(groupInputOther.querySelectorAll(".radio-hidden"));
+  
+  		// reset giá trị của attr disabled
+  		resetDisableAttr(inputOtherLst);
+  
+  		// danh sách id của các giá trị thuộc tính còn lại có trong biến thể không bị ẩn 
+  		let idValueLst = filterIdValue(itemFilterLst, props);
+  
+  		// xử lý disable các giá trị thuộc tính biến thể bị ẩn
+  		handleDisabled(idValueLst, inputOtherLst)
+  	})
+  
+  }
+  }
+  }
+  }
+  
+  // Tìm list biến thể chứa các thuộc tính đã chọn => true
+  function filterVariant(props){
+  const itemLst = listVariant.filter(variant => {
+  let listIdVariantValues = variant.VariantValues.map(value => {
+  return value.Id.toString();
+  });
+  let flag = true;
+  for (var i = 0; i < props.length; i++) {
+  if (!listIdVariantValues.includes(props[i])) {
+  	flag = false;
+  }
+  }
+  return flag;
+  })
+  return itemLst;
+  }
+  
+  // Tìm danh sách id của các giá trị thuộc tính còn lại có trong biến thể không bị ẩn  
+  function filterIdValue(itemFilterLst, props){
+  let idValueLst = [];
+  itemFilterLst.forEach(variant => {
+  let listIdVariantValues = variant.VariantValues.map(value => {
+  return value.Id.toString();
+  });
+  listIdVariantValues.forEach(value => {
+  let flag = true;
+  for (var i = 0; i < props.length; i++) {
+  	if (value == props[i]) {
+  		flag = false;
+  	}
+  }
+  if(flag) {
+  	if(!idValueLst.includes(value)) idValueLst.push(value)
+  }
+  })
+  })
+  return idValueLst;
+  }
+  
+  // reset giá trị của attr disable của group input 
+  function resetDisableAttr(inputOtherLst){
+  inputOtherLst.forEach(inputOther => {
+  inputOther.disabled = false;
+  })
+  }
+  
+  // disable các giá trị thuộc tính bị ẩn 
+  function handleDisabled(idValueLst, inputOtherLst){
+  for (let i = 0; i < inputOtherLst.length; i++) {
+  if (!idValueLst.includes(inputOtherLst[i].getAttribute("data-id"))) {
+  inputOtherLst[i].disabled = true
+  } 
+  else inputOtherLst[i].disabled = false
+  }
+  }
+  
+  // active ảnh biến thể được chọn 
+  function activeImage(inputCheckedLst) {
+  var props = inputCheckedLst.map(inputChecked => inputChecked.getAttribute("data-id"))
+  
+  // Tìm biến thể chứa các thuộc tính đã chọn => true, 
+  // nếu ko tìm thấy 01 thuộc tính trong biến thề thì trả về false thoát khỏi for
+  const itemFilter = listVariant.find(variant => {
+  let listIdVariantValues = variant.VariantValues.map(value => {
+  return value.Id.toString();
+  });
+  let flag = false;
+  for (var i = 0; i < props.length; i++) {
+  if (listIdVariantValues.includes(props[i])) {
+  	flag = true;
+  } else {
+  	flag = false;
+  	break;
+  }
+  }
+  return flag;
+  })
+  if (itemFilter) {
+  dataChosen = itemFilter; // biến thể chứa các thuộc tính đã chọn
+  };
+  
+  changeVariant(dataChosen)
+  let isImageVariant = false;
+  
+  for (let i = 0; i < imageLst.length; i++) {
+  const imageSrc = imageLst[i].getAttribute('data-id');
+  if (imageSrc == dataChosen.Id) {
+  swiper2.slideTo(i);
+  swiper.slideTo(i);
+  				isImageVariant = true;
+  }
+  }
+  // khi không có ảnh biến thể thì active ảnh product
+  if(!isImageVariant){
+  		swiper2.slideTo(0);
+  swiper.slideTo(0);
+  }
+  }
+  
+  // trả về ảnh product khi chưa chọn đủ thuộc tính của biến thể
+  function resetVariant(){
+  var maxDiscountPercentage = '{{ product.MaxDiscountPercentage | raw }}';
+  var maxDisplayPrice = '{{ product.MaxDisplayPrice | raw }}';
+  var maxOriginalPrice = '{{ product.MaxOriginalPrice | raw }}';
+  var minDisplayPrice = '{{ product.MinDisplayPrice | raw }}';
+  var minOriginalPrice = '{{ product.MinOriginalPrice | raw }}';
+  // hiển thị khoảng giá của sản phẩm
+  if (document.querySelector("#show-price")) {
+  		let showPrice = document.querySelector("#show-price");
+  		if(maxDiscountPercentage != 0){
+  				if(minOriginalPrice != minDisplayPrice || maxDisplayPrice != maxOriginalPrice){
+  						if(maxDisplayPrice == minDisplayPrice){
+  								showPrice.innerHTML = `<p class="text-neutral-1-600 text-header-1 line-through">
+    ${
+    Number(minOriginalPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }</p>
+  <p class="text-error-400">
+    ${
+    Number(minDisplayPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }</p>`
+  }
+  						else{
+  								showPrice.innerHTML = `<p class="text-neutral-1-600 text-header-1 line-through">
+    ${
+    Number(minOriginalPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }
+    <span>- ${
+      Number(maxOriginalPrice).toLocaleString('vi-VN', {
+      				style: 'currency',
+      				currency: 'VND'
+      		})
+      }</span>
+  </p>
+  <p class="text-error-400">
+    ${
+    Number(minDisplayPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }
+    <span>- ${
+      Number(maxDisplayPrice).toLocaleString('vi-VN', {
+      				style: 'currency',
+      				currency: 'VND'
+      		})
+      }</span>
+  </p>`
+  }
+  				}
+  				else{
+  						showPrice.innerHTML = `<p class="text-error-400">
+    ${
+    Number(minDisplayPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }
+    <span>- ${
+      Number(maxDisplayPrice).toLocaleString('vi-VN', {
+      			style: 'currency',
+      			currency: 'VND'
+      	})
+      }</span>
+  </p>
+  `
+  }
+  		}
+  		else{
+  				if(maxDisplayPrice == minDisplayPrice){
+  						showPrice.innerHTML = `<p class="text-error-400">
+    ${
+    Number(minDisplayPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }</p>
+  `
+  }
+  				else{
+  						showPrice.innerHTML = `<p class="text-error-400">
+    ${
+    Number(minDisplayPrice).toLocaleString('vi-VN', {
+    				style: 'currency',
+    				currency: 'VND'
+    		})
+    }
+    <span>- ${
+      Number(maxDisplayPrice).toLocaleString('vi-VN', {
+      				style: 'currency',
+      				currency: 'VND'
+      		})
+      }</span>
+  </p>
+  `
+  }
+  		}
+  }
+  
+  // hiển thị view đầu tiên
+  handleButtonAddToCart('{{ product.TotalQuantity | raw }}');
+  showQuantity('{{ product.TotalQuantity | raw }}');
+  document.querySelector(".input-qty").setAttribute("data-quantity", "1");
+  
+  // active ảnh đầu tiên
+  swiper2.slideTo(0);
+  swiper.slideTo(0);
+  }
+  
+  // xử lý button khi chọn biến thể 
+  function handleButtonAddToCart(quantity){
+  const soldOut = document.getElementById("sold-out");
+  var isAblePreorder = soldOut.getAttribute("data-isAblePreorder");
+  var isPriceHidden = soldOut.getAttribute("data-isPriceHidden");
+  var totalQuantity = soldOut.getAttribute("data-totalQuantity");
+  
+  if (isPriceHidden == "false") {
+  				if (isAblePreorder == "false") {
+  						if(Number(totalQuantity) == 0){
+  								if (soldOut.classList.contains('hidden')) {
+  										soldOut.classList.replace('hidden', 'flex');
+  								}
+  								if (document.getElementById("btn-lst-product-detail").classList.contains('flex')) {
+  										document.getElementById("btn-lst-product-detail").classList.replace('flex', 'hidden');
+  								}
+  								soldOut.innerHTML = `<p class="text-body-1 font-medium text-error-400 pt-4">Hết hàng</p>`
+  }
+  						else{
+  								if (Number(quantity) == 0) {
+  										if (soldOut.classList.contains('hidden')) {
+  												soldOut.classList.replace('hidden', 'flex');
+  										}
+  										if (document.getElementById("btn-lst-product-detail").classList.contains('flex')) {
+  												document.getElementById("btn-lst-product-detail").classList.replace('flex', 'hidden');
+  										}
+  										soldOut.innerHTML = `<p class="text-body-1 font-medium text-error-400 pt-4">Hết hàng</p>`
+  }
+  								else {
+  										if (soldOut.classList.contains('flex')) {
+  												soldOut.classList.replace('flex', 'hidden');
+  										}
+  										if (document.getElementById("btn-lst-product-detail").classList.contains('hidden')) {
+  												document.getElementById("btn-lst-product-detail").classList.replace('hidden', 'flex');
+  										}
+  								}
+  						}
+  				}
+  				else{
+  						if (soldOut.classList.contains('flex')) {
+  								soldOut.classList.replace('flex', 'hidden');
+  						}
+  						if (document.getElementById("btn-lst-product-detail").classList.contains('hidden')) {
+  								document.getElementById("btn-lst-product-detail").classList.replace('hidden', 'flex');
+  						}
+  				}
+  } 
+  else {
+  	if (document.getElementById("btn-lst-product-detail").classList.contains('flex')) {
+  		document.getElementById("btn-lst-product-detail").classList.replace('flex', 'hidden');
+  	}
+  	if (Number(quantity) == 0) {
+  		if (soldOut.classList.contains('hidden')) {
+  				soldOut.classList.replace('hidden', 'flex');
+  		}
+  		soldOut.innerHTML = `<p class="text-body-1 font-medium text-error-400 pt-4">Hết hàng</p>`
+  } else {
+  				if (soldOut.classList.contains('flex')) {
+  					soldOut.classList.replace('flex', 'hidden');
+  			}
+  	}
+  
+  }
+  }
+  
+  // Hiển thị số lượng còn lại của sản phẩm khi click chọn biến thể
+  function showQuantity(quantity){
+  		if(document.getElementById("show-quantity")){
+  				document.getElementById("show-quantity").innerHTML = `Còn ${quantity} sản phẩm`;
+  		}
+  }
+  
+  // Xử lý biến thể mặc định
+  function handleVariantDefault(){
+  		let variantDefault = JSON.parse('{{ variantDefault | json | raw }}');
+  let  variantDefaultValues = variantDefault.VariantValues.map(variantValue => variantValue.Id);
+  
+  		inputAllLst.forEach(input => {
+  				if(variantDefaultValues.includes(Number(input.getAttribute("data-id")))){
+  						input.checked = true; 
+  				}
+  		})
+  
+  		const inputCheckedLst = Array.from(document.querySelectorAll("#variant-list-detail .group-radio .radio-hidden:checked"));
+  
+  		changeVariant(variantDefault);
+  		
+  		for (let i = 0; i < imageLst.length; i++) {
+  				const imageSrc = imageLst[i].getAttribute('data-id');
+  				if (imageSrc == variantDefault.Id) {
+  						swiper2.slideTo(i);
+  						swiper.slideTo(i);
+  				}
+  		}
+  		
+  
+  		inputCheckedLst.forEach((input, index) => {
+  				var props = [];
+  				if(inputCheckedLst.length > 2){
+  						for (let i = 0; i < inputCheckedLst.length - 1; i++) {
+  								if( i == inputCheckedLst.length - 2 ) {
+  										props.push(input.getAttribute("data-id"))
+  								}
+  								else{
+  										if( index == inputCheckedLst.length - 1) {
+  												props.push(inputCheckedLst[0].getAttribute("data-id"))
+  										}
+  										else {
+  												props.push(inputCheckedLst[index + 1 + i].getAttribute("data-id"))
+  										}
+  								}
+  						};
+  				}
+  				else{
+  						props.push(input.getAttribute("data-id"))
+  				}
+  				
+  				
+  				if(groupInputLst.length > 1){
+  						// danh sách group input khác với group input đã chọn 
+  						var groupInputOtherLst = [];
+  
+  						if(groupInputLst.length == 2){
+  								groupInputLst.forEach(groupInput => {
+  										if (groupInput.getAttribute("aria-labelledby") != input.name ) 
+  												groupInputOtherLst.push(groupInput);
+  								})
+  						}
+  						else{
+  								groupInputLst.forEach(groupInput => {
+  										let flag = true;
+  										for(let i=0; i < inputCheckedLst.length - 2; i++){
+  												if(index == inputCheckedLst.length - 1 ){
+  														if (groupInput.getAttribute("aria-labelledby") == inputCheckedLst[0].name) flag = false
+  												}
+  												else{
+  														if (groupInput.getAttribute("aria-labelledby") == inputCheckedLst[index + 1].name) flag = false
+  												}
+  										}
+  										if (groupInput.getAttribute("aria-labelledby") != input.name && flag)
+  												groupInputOtherLst.push(groupInput)
+  								})
+  						}
+  						
+  
+  						// list biến thể chứa các thuộc tính đã chọn => true,
+  						var itemFilterLst = filterVariant(props);
+  
+  						groupInputOtherLst.forEach(groupInputOther => {
+  						const inputOtherLst = Array.from(groupInputOther.querySelectorAll(".radio-hidden"));
+  
+  						// reset giá trị của attr disabled
+  						resetDisableAttr(inputOtherLst);
+  
+  						// danh sách id của các giá trị thuộc tính còn lại có trong biến thể không bị ẩn 
+  						let idValueLst = filterIdValue(itemFilterLst, props);
+  
+  						// xử lý disable các giá trị thuộc tính biến thể bị ẩn
+  						handleDisabled(idValueLst, inputOtherLst)
+  				})
+  				}
+  				else{
+  						groupInputOtherLst = groupInputLst;
+  						itemFilterLst = listVariant;
+  
+  						groupInputLst.forEach(groupInputOther => {
+  								const inputOtherLst = Array.from(groupInputOther.querySelectorAll(".radio-hidden")).filter(input => input.getAttribute("data-id") != props[0]);
+  
+  								// reset giá trị của attr disabled
+  								resetDisableAttr(inputOtherLst);
+  
+  								// danh sách id của các giá trị thuộc tính còn lại có trong biến thể không bị ẩn 
+  								let idValueLst = filterIdValue(listVariant, props);
+  
+  								// xử lý disable các giá trị thuộc tính biến thể bị ẩn
+  								handleDisabled(idValueLst, inputOtherLst)
+  						})
+  				}
+  		})
+  																														
+  	}{% endscriptblock %}

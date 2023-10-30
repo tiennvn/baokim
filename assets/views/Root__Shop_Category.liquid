@@ -1,0 +1,122 @@
+{% assign imageDecor = "Web-17/decor-primary-full.svg" | generate_proxy_url: width: null, height: null %}
+{% assign productEmpty = "Web-17/product-empty.svg" | generate_proxy_url: width: null, height: null %}
+{% assign newestProducts = "" | get_newest_products: limit: 4 %}
+{% assign bestSellerProductsResult = 0 | get_best_seller_products: limit: 8 %}
+{% assign slugCategory = Model.Properties.Request.Slug %}
+
+{{ 'Shop' | page_title_segment: position: '0' }}
+{{ Site.SiteName | page_title_segment: position: 'end' }}
+
+{% zone "Header" %}
+  {{ 'Module__MenuWrapper' | shape_new | shape_properties: Shape: 'FE__Menu' | shape_render }}
+{% endzone %}
+
+{% zone "Footer" %}
+  {{ "Module__FooterWrapper" | shape_new | shape_properties: Shape: 'FE__Footer' | shape_render }}
+{% endzone %}
+{% if slugCategory == null %}
+  <main>
+    <section class="bg-primary-4 mt-20 lg:animate-fade">
+      <div class="mx-auto w-full xl:max-w-7xl">
+        {% assign breadcrumbList = '' | split: ',' | init_breadcrumb: lastTitle: 'Sản phẩm' %}
+        {{ 'Module__Shop_BreadcrumbCustomWrapper' | shape_new | shape_properties: Shape: 'FE__Breadcrumb', Data: breadcrumbList | shape_render }}
+      </div>
+    </section>
+
+    <section>
+      <div class="mx-auto w-full relative xl:max-w-7xl">
+        <div class="absolute hidden -z-10 -left-[38%] top-1/4 xl:flex">
+          <img
+            src="{{ imageDecor }}"
+            class="object-contain w-[600px] h-[626px]"
+            alt="">
+        </div>
+
+        {% if newestProducts.Items.size > 0 %}
+          <div class="flex flex-col gap-8 px-4 py-16 md:py-20 md:px-6 lg:px-2 2xl:px-0 lg:py-[120px]">
+            <div class="flex flex-col pb-8 border-b border-neutral-2-200 gap-y-4 gap-x-10 justify-between md:flex-row md:justify-between animate-bottom" style="animation-delay: 200ms; animation-fill-mode: backwards;">
+              <h2 class="text-heading-4 font-semibold text-secondary-1 uppercase md:text-heading-2">SẢN PHẨM
+                <span class="text-primary-1">NỔI BẬT</span>
+              </h2>
+              {{ "FE__Search_Input" | shape_new | shape_render }}
+            </div>
+
+            <div class="w-full flex flex-col gap-10">
+              <!-- Sản phẩm mới -->
+              <div class="flex flex-col gap-6 animate-top" style="animation-delay: 400ms; animation-fill-mode: backwards;">
+                <div class="w-full flex gap-4 items-center">
+                  <p class="text-secondary-1 md:text-heading-4 font-semibold w-fit ">Sản phẩm
+                    <span class="text-primary-1">mới</span>
+                  </p>
+                  <hr class="flex-auto border-primary-1" />
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-6">
+                  {{ 'Module__Shop_ProductListWrapper' | shape_new | shape_properties: Shape: 'FE__Shop_ProductList', Data: newestProducts | shape_render }}
+                </div>
+              </div>
+
+              <!-- Sản phẩm bán chạy -->
+              {% if bestSellerProductsResult.Items.size > 0 %}
+                <div class="flex flex-col gap-6 animate-top" style="animation-delay: 400ms; animation-fill-mode: backwards;">
+                  <div class="w-full flex gap-4 items-center">
+                    <p class="text-secondary-1 md:text-heading-4 font-semibold w-fit ">Sản phẩm
+                      <span class="text-primary-1">bán chạy</span>
+                    </p>
+                    <hr class="flex-auto border-primary-1" />
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-6">
+                    {{ 'Module__Shop_ProductListWrapper' | shape_new | shape_properties: Shape: 'FE__Shop_ProductList', Data: bestSellerProductsResult | shape_render }}
+                  </div>
+                </div>
+              {% endif %}
+
+              <div class="w-full flex justify-center ">
+                <button class="w-fit h-fit border border-primary-1 rounded-full">
+                  {% a controller: "Shop", route_action: "Search", route_area: "TWeb.Products", class: "flex gap-2.5 py-2 px-6 text-primary-1" %}
+                    <span class="twi-17-arrow-outward-fill text-xl leading-5"></span>
+                    <span class="text-body-1 font-medium">Xem thêm</span>
+                  {% enda %}
+                </button>
+              </div>
+            </div>
+
+          </div>
+        {% else %}
+          <div class="flex flex-col items-center pt-12 px-6 gap-12 xl:gap-14">
+            <div class="flex flex-col gap-2 text-center max-w-[364px]">
+              <p class="text-header-1 font-semibold text-neutral-1-900 md:text-heading-4">
+                Không có sản phẩm
+              </p>
+              <p class="text-neutral-1-700 text-body-2">
+                Hiện tại chưa có sản phẩm, bạn có thể ghé thăm cửa hàng của chúng tôi vào lần tới
+              </p>
+            </div>
+            <div class="w-full md:w-2/3 xl:w-[53%]">
+              <div class="relative w-full pt-[48%]">
+                <img
+                  src="{{ productEmpty }}"
+                  alt=""
+                  class="image-custom object-contain">
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </section>
+
+    <div id="react-notification"></div>
+    <div id="react-modal-product"></div>
+
+  </main>
+{% else %}
+  {% assign category = slugCategory | get_shop_category_by_slug %}  
+  {% assign url = "/shop/search?" | prepend: '~' | append: '&categoryIDs=' | append: category.Id %}
+    <script>
+      function gotoSearchRoot() {
+        let url = '{{ url | absolute_url | raw }}';
+        window.location.href = url;
+      }
+      gotoSearchRoot();
+    </script>
+{% endif %}

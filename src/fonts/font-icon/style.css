@@ -1,0 +1,144 @@
+@font-face {
+  font-family: 'TwebIcons-17';
+  src:  url('fonts/TwebIcons-17.eot?xs4gkj');
+  src:  url('fonts/TwebIcons-17.eot?xs4gkj#iefix') format('embedded-opentype'),
+    url('fonts/TwebIcons-17.ttf?xs4gkj') format('truetype'),
+    url('fonts/TwebIcons-17.woff?xs4gkj') format('woff'),
+    url('fonts/TwebIcons-17.svg?xs4gkj#TwebIcons-17') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="twi-17-"], [class*=" twi-17-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'TwebIcons-17' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.twi-17-arrow-narrow-left-fill:before {
+  content: "\e923";
+}
+.twi-17-arrow-narrow-right-fill:before {
+  content: "\e924";
+}
+.twi-17-arrow-narrow-up-fill:before {
+  content: "\e925";
+}
+.twi-17-arrow-narrow-down-fill:before {
+  content: "\e926";
+}
+.twi-17-arrow-down-line:before {
+  content: "\e900";
+}
+.twi-17-arrow-left-line:before {
+  content: "\e901";
+}
+.twi-17-arrow-right-line:before {
+  content: "\e902";
+}
+.twi-17-arrow-up-line:before {
+  content: "\e903";
+}
+.twi-17-chevron-next-line-line:before {
+  content: "\e904";
+}
+.twi-17-chevron-previous-line-line:before {
+  content: "\e905";
+}
+.twi-17-close-fill:before {
+  content: "\e906";
+}
+.twi-17-down-circle-line:before {
+  content: "\e907";
+}
+.twi-17-menu-line-line:before {
+  content: "\e908";
+}
+.twi-17-search-line-line:before {
+  content: "\e909";
+}
+.twi-17-trash-line:before {
+  content: "\e90a";
+}
+.twi-17-arrow-2-left-fill:before {
+  content: "\e90b";
+}
+.twi-17-arrow-2-right-fill:before {
+  content: "\e90c";
+}
+.twi-17-arrow-down-fill:before {
+  content: "\e90d";
+}
+.twi-17-arrow-outward-fill:before {
+  content: "\e90e";
+}
+.twi-17-arrow-up-fill:before {
+  content: "\e90f";
+}
+.twi-17-calendar-fill:before {
+  content: "\e910";
+}
+.twi-17-call-fill:before {
+  content: "\e911";
+}
+.twi-17-checkbox-check-fill:before {
+  content: "\e912";
+}
+.twi-17-checkbox-indeterminate-fill:before {
+  content: "\e913";
+}
+.twi-17-check-fill:before {
+  content: "\e914";
+}
+.twi-17-email-fill:before {
+  content: "\e915";
+}
+.twi-17-facebook-fill:before {
+  content: "\e916";
+}
+.twi-17-infor-fill:before {
+  content: "\e917";
+}
+.twi-17-location-fill:before {
+  content: "\e918";
+}
+.twi-17-minus-fill:before {
+  content: "\e919";
+}
+.twi-17-money-fill:before {
+  content: "\e91a";
+}
+.twi-17-plus-fill:before {
+  content: "\e91b";
+}
+.twi-17-shopping-cart-fill:before {
+  content: "\e91c";
+}
+.twi-17-star-fill:before {
+  content: "\e91d";
+}
+.twi-17-three-dots-horizon-fill:before {
+  content: "\e91e";
+}
+.twi-17-twitter-fill:before {
+  content: "\e91f";
+}
+.twi-17-upload-fill:before {
+  content: "\e920";
+}
+.twi-17-user-fill:before {
+  content: "\e921";
+}
+.twi-17-youtube-fill:before {
+  content: "\e922";
+}

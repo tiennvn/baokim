@@ -1,0 +1,41 @@
+{% assign postList = Model.Data %}
+
+  <div class="flex flex-col w-full gap-[30px]">
+    <h4 class="text-heading-4 text-secondary-1 font-semibold">Bài viết mới</h4>
+    <div class="flex flex-col w-full gap-8">
+      {% for post in postList.Items %}
+      {% assign displayDate = post.DateUpdated | post: post.DatePublished | date: "%d Thg %m, %Y" %}
+        <div class="flex w-full gap-5">
+          <div class="w-2/5 md:w-1/5 lg:w-2/5 xl:w-[37%]">
+              <div class="relative w-full pt-[66.67%]">
+                  <a href="{{ post.NiceUrl | prepend: "~/" | absolute_url }}"> 
+                      <img class="image-custom object-cover rounded-[4px]" src="{{ post.ImageFullUrl }}" alt="{{ post.Title | raw }}">
+                  </a>
+              </div>
+          </div>
+          <div class="flex flex-col gap-2 w-3/5 md:w-4/5 lg:w-3/5 xl:w-[58%]">
+              <div class="flex items-center text-title-1 font-medium gap-2 text-primary-2 uppercase">
+                  <div class="tooltip max-w-[40%] md:max-w-[75%] lg:max-w-[28%] xl:max-w-[40%]">
+                      <div data-tooltip="{{ post.Category_Title | raw }}" class="tooltip-post tooltip-post-small">
+                          <a href="{{ post.Category.NiceUrl | prepend: "~/" | absolute_url }}" class="line-clamp-1" >
+                            {{ post.Category_Title | raw }}
+                          </a>
+                      </div>
+                  </div>
+                  <p class="flex gap-2 items-center whitespace-nowrap">
+                      <span class="w-1 h-1 bg-primary-1 rounded-full"></span>
+                      <span>{{ displayDate | raw }}</span>
+                  </p>
+              </div>
+              <div class="flex">
+                  <p class="min-h-[48px] md:min-h-[80px] text-title-1 text-neutral-1-700 font-semibold md:text-header-1 lg:text-title-1 tooltip">
+                      <a data-tooltip="{{ post.Title | raw }}" href="{{ post.NiceUrl | prepend: "~/" | absolute_url }}" class="tooltip-post tooltip-post-small line-clamp-2">
+                        {{ post.Title | raw }}
+                      </a>
+                  </p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>

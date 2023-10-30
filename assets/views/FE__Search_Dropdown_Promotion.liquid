@@ -1,0 +1,43 @@
+<div class="flex flex-col gap-2 w-full">
+  <p class="text-body-2 text-neutral-1-900">Khuyến mãi</p>
+  <div class="w-full relative bg-white dropdown scrollbar">
+    <button class="dropdown-btn flex w-full justify-between items-center gap-2 pl-3 border border-neutral-2-200 rounded md:w-full">
+      {% case isPromotion %}
+        {% when 0 %}
+        <p class="text-body-2 text-neutral-1-900">Tất cả</p>
+        {% when 1 %}
+        <p class="text-body-2 text-neutral-1-900">Có khuyến mãi</p>
+        {% when 2 %}
+        <p class="text-body-2 text-neutral-1-900">Không có khuyến mãi</p>
+      {% endcase %}
+      <span class="twi-17-arrow-down-line text-2xl leading-6 text-neutral-1-500 p-3"></span>
+    </button>
+    <div class="dropdown-panel absolute top-[50px] right-0 py-2 z-20 w-full hidden max-h-[338px] overflow-y-hidden">
+      <ul class="flex flex-col w-full bg-white overflow-y-scroll rounded border border-neutral-2-200 shadow-dropdown">
+        {% for isPromo in promotionFilter %}
+          {% if isPromotion == isPromo %}
+            {% assign selected = "text-secondary-1 font-medium justify-between icon-selected" %}
+          {% else %}
+            {% assign selected = "" %}
+          {% endif %}
+          {% assign isPromotionParamUp = "&isPromotion=" | append: isPromo %}
+          {% assign urlParam = "shop/search?" | append: keyParam | append: categoryIDsParam | append: minPriceParam | append: maxPriceParam | append: providerIdsParam | append: brandIDsParam | append: isPromotionParamUp | append: orderFieldParam %}
+          {% case isPromo %}
+            {% when 0 %}
+            <li>
+              <a href="{{ urlParam | prepend: '~/'  | absolute_url | raw }}" class="w-full flex px-4 py-3 text-body-2 {{selected}}">Tất cả</a>
+            </li>
+            {% when 1 %}
+            <li>
+              <a href="{{ urlParam | prepend: '~/'  | absolute_url | raw }}" class="w-full flex px-4 py-3 text-body-2 {{selected}}">Có khuyến mãi</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ urlParam | prepend: '~/'  | absolute_url | raw }}" class="w-full flex px-4 py-3 text-body-2 {{selected}}">Không có khuyến mãi</a>
+            </li>
+          {% endcase %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
