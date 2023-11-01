@@ -2,111 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-// @import './fonts/font-icon/style.css';
-@import './scss/search.scss';
-@import './scss/cart.scss';
-@import './scss/index.scss';
-@import './scss/order-tracking.scss';
-@import './scss/product.scss';
-@import './scss/menu.scss';
+@import './scss/animation.scss';
 
-
-#cart-product-lst{
-	.react-check-product{
-		@apply relative border border-neutral-2-200 rounded cursor-pointer leading-[0] w-[18px] h-[18px] p-0.5 opacity-100 appearance-none;
-		-webkit-appearance: none;
-		font-family: "TwebIcons-17";
-		&:checked{
-			@apply bg-primary-1 border-primary-1;
-		}
-		&:disabled{
-			cursor: default !important;
-			opacity: 0.5 !important;
-		}
-		&:before{
-			content: "\e912";
-			@apply absolute right-0.5 top-0.5 text-xs leading-3 text-white z-[2];
-		}
-	}
-}
-
-#checked-all{
-	@apply relative border border-neutral-2-200 rounded cursor-pointer leading-[0] w-[18px] h-[18px] p-0.5 opacity-100 appearance-none;
-	-webkit-appearance: none;
-	font-family: "TwebIcons-17";
-	&:checked{
-		@apply bg-primary-1 border-primary-1;
-	}
-	&:disabled{
-		cursor: default !important;
-	}
-	&:before{
-		content: "\e913";
-		@apply absolute right-0.5 top-0.5 text-xs leading-3 text-white z-[2];
-	}
-}
-
-// Loading spinners
-@keyframes dot-keyframes {
-	0% {
-		opacity: 1;
-		transform: scale(1);
-	}
-  
-	45% {
-		opacity: (0.7);
-		transform: scale(0.1);
-	}
-  
-	80% {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-  
-.loading-dots--dot {
-	animation: 0.75s cubic-bezier(0.2, 0.68, 0.18, 1.08) 0.12s infinite normal both running dot-keyframes;
-	border-radius: 10px;
-	display: inline-block;
-	height: 10px;
-	width: 10px;
-	
-	&:nth-child(2) {
-		animation-delay: .24s;
-	}
-	
-	&:nth-child(3) {
-		animation-delay: .36s;
-	}
-}
-
-button:disabled{
-	opacity: 0.65;
-}
-
-.btn-full{
-	@apply transition-all duration-300;
-	&:hover{
-		@apply bg-primary-2 transition-all duration-300 border-primary-2;
-	}
-}
-
-.btn-line{
-	@apply transition-all duration-300;
-	&:hover{
-		@apply bg-neutral-3-50 transition-all duration-300;
-	}
-}
-
-.scrollbar {
-    @media (min-width: 1280px) {     
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-    
-    ::-webkit-scrollbar-thumb {
-        background: #B8C0CC;
-        border-radius: 10px;
+.overlay-menu{
+    @apply opacity-0 -z-10 w-0 overflow-x-hidden bg-black/80 fixed h-full top-0 left-0 lg:z-0 lg:w-fit lg:bg-white lg:opacity-100 lg:static;
+    transition: opacity .3s linear .2s, width .1s linear .5s;
+    &.active{
+        @apply opacity-100 z-50 w-full;
+        transition: opacity .3s linear;
     }
-  } 
+    .menu-header{
+        @apply -left-full relative top-0 flex flex-col gap-12 bg-white h-full p-4 w-3/4 lg:left-0 lg:w-fit lg:h-fit;
+        transition: left .3s linear ;
+        &.active{
+            @apply left-0;
+            transition: left .3s linear;
+        }
+    }
+}
+
+.image-custom {
+    @apply top-0 left-0 absolute w-full h-full;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    &::after {
+        display: none;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
 }

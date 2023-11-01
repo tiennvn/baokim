@@ -93,14 +93,14 @@
             opacity: 1;
         }
     }
-    @include animate(fadeIn,1s,ease-in-out,0.1s);
+    @include animate(fadeIn,1s,ease-in-out,0.5s);
 }
 
 // fade in up
 .fadeInUp { 
     @include keyframes(fadeInUp) {
         0% {
-            transform:translateY(64px); 
+            transform:translateY(100px); 
             opacity: 0;
         }
       100% {
@@ -108,7 +108,7 @@
             opacity: 1;
         }
     }
-    @include animate(fadeInUp,7s,ease-in-out,0.1s);
+    @include animate(fadeInUp,1s,ease-in-out, 0s);
     
 }
 
@@ -128,19 +128,81 @@
     
 }
 
+// flip in left
+.flipInLeft { 
+    @include keyframes(flipInLeft) {
+        0% {
+            opacity:0;
+            transform: rotateY(-45deg);
+           
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg);
+        }
+    }
+    @include animate(flipInLeft,1.5s,ease-in-out,1s);
+}
+
+// flip in right
+.flipInRight { 
+    @include keyframes(flipInRight) {
+        0% {
+            opacity:0;
+            transform: rotateY(45deg);
+           
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg);
+        }
+    }
+    @include animate(flipInRight,1s,ease-in-out,1s);
+}
+
+// flip move in up
+.flipMoveInUp { 
+    @include keyframes(flipMoveInUp) {
+        0% {
+            opacity:0;
+            transform: rotateY(-120deg) translateY(100px);
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg) translateY(0);
+        }
+    }
+    @include animate(flipMoveInUp,1.5s,ease-in-out,0s);
+}
+
+// flip move in down
+.flipMoveInDown { 
+    @include keyframes(flipMoveInDown) {
+        0% {
+            opacity:0;
+            transform: rotateY(-30deg) translateY(-100px);
+        }
+        100% {
+            opacity:1;
+            transform: rotateY(0deg) translateY(0);
+        }
+    }
+    @include animate(flipMoveInDown,1s,ease-in-out,0.1s);
+}
+
 // fade in left
 .fadeinLeft { 
     @include keyframes(fadeinLeft) {
         0% {
             opacity:0;
-            transform: translateX(-64px);
+            transform: translateX(-100px);
         }
         100% {
             opacity:1;
             transform: translateX(0);
         }
     }
-    @include animate(fadeinLeft, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
+    @include animate(fadeinLeft, .5s,ease-in-out,0.3s);
 }
  
 // fade in right
@@ -148,16 +210,15 @@
     @include keyframes(fadeinRight) {
         0% {
             opacity:0;
-            transform: translateX(64px);
+            transform: translateX(100px);
         }
         100% {
             opacity:1;
             transform: translateX(0);
         }
     }
-    @include animate(fadeinRight, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
+    @include animate(fadeinRight, .5s,ease-in-out,0.3s);
 }
-
 // fade Zoom in
 .fadeZoomin { 
     @include keyframes(fadeZoomin) {
@@ -186,68 +247,6 @@
         }
     }
     @include animate(fadeZoomout, 0.4s,cubic-bezier(0.12, 0.4, 0.29, 1.45),0.2s);
-}
-
-// flip in left
-.flipInLeft { 
-    @include keyframes(flipInLeft) {
-        0% {
-            opacity:0;
-            transform: rotateY(-30deg);
-           
-        }
-        100% {
-            opacity:1;
-            transform: rotateY(0deg);
-        }
-    }
-    @include animate(flipInLeft,1s,ease-in-out,0.1s);
-}
-
-// flip in right
-.flipInRight { 
-    @include keyframes(flipInRight) {
-        0% {
-            opacity:0;
-            transform: rotateY(30deg);
-           
-        }
-        100% {
-            opacity:1;
-            transform: rotateY(0deg);
-        }
-    }
-    @include animate(flipInRight,1s,ease-in-out,0.1s);
-}
-
-// flip move in up
-.flipMoveInUp { 
-    @include keyframes(flipMoveInUp) {
-        0% {
-            opacity:0;
-            transform: rotateY(-30deg) translateY(100px);
-        }
-        100% {
-            opacity:1;
-            transform: rotateY(0deg) translateY(0);
-        }
-    }
-    @include animate(flipMoveInUp,1s,ease-in-out,0.1s);
-}
-
-// flip move in down
-.flipMoveInDown { 
-    @include keyframes(flipMoveInDown) {
-        0% {
-            opacity:0;
-            transform: rotateY(-30deg) translateY(-100px);
-        }
-        100% {
-            opacity:1;
-            transform: rotateY(0deg) translateY(0);
-        }
-    }
-    @include animate(flipMoveInDown,1s,ease-in-out,0.1s);
 }
 
 // fase flip X

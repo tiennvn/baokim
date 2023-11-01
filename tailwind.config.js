@@ -155,23 +155,11 @@ module.exports = {
         'display-5': ['48px', 'auto'],
         'display-6': ['40px', 'auto'],
       },
-      fontFamily: {
-        SVN: ['SVN Avenirnext', 'sans-serif'],
-      },
-      fontWeight: {
-        medium: '450',
-      },
       backgroundImage: {
-        'home': "url('/src/img/home/home-banner.png')",
-      },
-      animation: {
-        'header': 'spin 300ms ease-in-out infinite',
-        fade:"fade 700ms ",
-        top:"slidetop 500ms ",
-        bottom:"slidebottom 500ms ",
-        right:"slideright 500ms ",
-        right1:"slideright1 500ms ",
-        left:"slideleft 500ms ",
+        'background': "url('/src/image/background.png')",
+        'bg-footer': "url('/src/image/bg-footer.png')",
+        'banner_cashew': "url('/src/image/banner_cashew.jpg')",
+        'banner_nest': "url('/src/image/banner_nest.png')",
       },
       keyframes: {
         fade: {

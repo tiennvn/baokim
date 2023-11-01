@@ -22,10 +22,6 @@ module.exports = {
       import:'./src/index.js',
       filename: 'static/js/bundle.js'
     },
-    counter: {
-      import:'./src/js/counter.js',
-      filename: 'js/counter.js'
-    },
   },
   output: {
     clean: true,
@@ -93,84 +89,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/view/index.html',
-      inject: "body",
-      chunks: ['index', 'counter'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'blog.html',
-      template: './src/view/blog.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'blog-detail.html',
-      template: './src/view/blog-detail.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'contact.html',
-      template: './src/view/contact.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'introduction.html',
-      template: './src/view/introduction.html',
-      inject: "body",
-      chunks: ['index', 'counter'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'product.html',
-      template: './src/view/product.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'product-detail.html',
-      template: './src/view/product-detail.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: '404.html',
-      template: './src/view/404.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'category.html',
-      template: './src/view/category.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'category-search.html',
-      template: './src/view/category-search.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'cart.html',
-      template: './src/view/cart.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'searchOrder.html',
-      template: './src/view/searchOrder.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'searchProduct.html',
-      template: './src/view/searchProduct.html',
-      inject: "body",
-      chunks: ['index'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'searchBlog.html',
-      template: './src/view/searchBlog.html',
       inject: "body",
       chunks: ['index'],
     }),
