@@ -157,6 +157,7 @@ module.exports = {
       },
       backgroundImage: {
         'background': "url('/src/image/background.png')",
+        'background-breadcrumb': "url('/src/image/background-breadcrumb.png')",
         'bg-footer': "url('/src/image/bg-footer.png')",
         'banner_cashew': "url('/src/image/banner_cashew.jpg')",
         'banner_nest': "url('/src/image/banner_nest.png')",
