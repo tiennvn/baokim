@@ -4,6 +4,10 @@
 
 @import './scss/animation.scss';
 
+html {
+    scroll-behavior: smooth;
+}
+
 .overlay-menu{
     @apply opacity-0 -z-10 w-0 overflow-x-hidden bg-black/80 fixed h-full top-0 left-0 lg:z-0 lg:w-fit lg:bg-white lg:opacity-100 lg:static;
     transition: opacity .3s linear .2s, width .1s linear .5s;
@@ -31,6 +35,63 @@
     }
 }
 
-html {
-    scroll-behavior: smooth;
+.hover-effect-container {
+    position: relative;
+    display: inline-block;
+    &::before, &::after {
+        position: absolute;
+        content: "";
+        width: 15%; 
+        height: 1px;
+        background-color: rgb(54, 56, 55);
+        z-index: 2;
+        bottom: 0;
+        transition: width 0.2s 0.35s ease-out;
+        
+    }
+    &::before {
+        right: 50%;
+    }
+    &::after {
+        left: 50%;
+    }
+
+    &:hover::before,
+    &:hover::after {
+        width: 50%;
+        transition: width 0.2s ease-in;  
+    }
+
+    .hover-effect {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding: 12px 16px;
+        
+        &::before, &::after {
+            position: absolute;
+            content: "";
+            width: 0%; height: 0%;
+            background: transparent;
+            opacity: 0;
+            z-index: 2;
+            transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
+        }
+        &::before {
+            bottom: 0; left: 0;
+            border-left: 2px solid rgb(54, 56, 55);
+            border-top: 2px solid rgb(54, 56, 55);
+          }
+          &::after {
+            bottom: 0; right: 0;
+            border-right: 2px solid rgb(54, 56, 55);
+            border-top: 2px solid rgb(54, 56, 55);
+          }
+          &:hover::before,
+          &:hover::after {
+            width: 50%; height: 96%;
+            opacity: 1;
+            transition: height 0.2s 0.2s ease-in, width 0.2s 0.4s linear, opacity 0s 0.2s;   
+          }
+    }
 }
