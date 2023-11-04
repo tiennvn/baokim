@@ -16,11 +16,13 @@ if(btnCloseMenu){
     })
 }
 
-overlayMenu.addEventListener("click", function(event) {
-  if(event.target===this) {
-    removeActive();
-  }
-});
+if(overlayMenu) {
+    overlayMenu.addEventListener("click", function(event) {
+      if(event.target===this) {
+        removeActive();
+      }
+    });
+}
 
 function removeActive() {
     overlayMenu.classList.remove('active');
