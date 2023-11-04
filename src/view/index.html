@@ -336,49 +336,23 @@
         </section>
 
         <section>
-            <div class="btn-scrollTop fixed hidden z-10 bottom-5 right-5">
-                <div class="flex flex-col items-center gap-3">
-                    <button class="flex w-fit h-fit text-white bg-primary-1 px-2.5 py-1.5 rounded-full shadow-dropdown lg:hidden">
-                        <a href="tel:+84946317555">
-                            <i class="fa-solid fa-phone"></i>
-                        </a>
-                    </button>
-                    <button class="flex w-fit h-fit text-black/70 border border-black/70 rounded-full p-2.5 shadow-dropdown">
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </button>
-                </div>
+            <div class="btn-scrollTop fixed hidden z-10 bottom-5 right-7">
+                <button class="flex w-9 h-9 justify-center text-black/70 border border-black/70 rounded-full p-2.5 shadow-dropdown">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+            <div class="fixed z-10 bottom-5 left-7">
+                <button class="flex w-9 h-9 justify-center text-white bg-primary-1 px-2.5 py-1.5 rounded-full shadow-dropdown lg:hidden">
+                    <a href="tel:+84946317555">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                </button>
             </div>
         </section>
         <!-- Messenger Plugin chat Code -->
         <div id="fb-root"></div>
-
         <!-- Your Plugin chat code -->
-        <div id="fb-customer-chat" class="fb-customerchat">
-        </div>
-
-        <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "101204316413025");
-        chatbox.setAttribute("attribution", "biz_inbox");
-        </script>
-
-        <!-- Your SDK code -->
-        <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            xfbml            : true,
-            version          : 'v18.0'
-            });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        </script>
+        <div id="fb-customer-chat" class="fb-customerchat"></div>
     </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
