@@ -156,11 +156,11 @@ module.exports = {
         'display-6': ['40px', 'auto'],
       },
       backgroundImage: {
-        'background': "url('/src/image/background.png')",
-        'background-breadcrumb': "url('/src/image/background-breadcrumb.png')",
-        'bg-footer': "url('/src/image/bg-footer.png')",
+        'background': "url('/src/image/background.jpg')",
+        'background-breadcrumb': "url('/src/image/background-breadcrumb.jpg')",
+        'bg-footer': "url('/src/image/bg-footer.jpg')",
         'banner_cashew': "url('/src/image/banner_cashew.jpg')",
-        'banner_nest': "url('/src/image/banner_nest.png')",
+        'banner_nest': "url('/src/image/banner_nest.jpg')",
       },
       keyframes: {
         fade: {
